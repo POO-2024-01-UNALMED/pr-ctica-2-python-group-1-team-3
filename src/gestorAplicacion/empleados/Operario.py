@@ -9,7 +9,14 @@
 #from gestorAplicacion.empleados.Meta import Meta
 #from gestorAplicacion.externo.Persona import Persona
 
-from src.gestorAplicacion.externo import Persona
+from gestorAplicacion.empleados.Meta import Meta
+from gestorAplicacion.externo.Persona import Persona
+from gestorAplicacion.empresa.Fabrica import Fabrica
+
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 class Operario(Persona):
@@ -41,9 +48,9 @@ class Operario(Persona):
     #
     # @param fabrica Fábrica a la que pertenece el operario
     
-    def __init__(self, nombre, edad, identificacion, cuentaBancaria, fabrica=None):
+    def __init__(self, nombre, edad, identificacion, cuentaBancaria, fabrica):
         super().__init__(nombre, edad, identificacion, cuentaBancaria)
-        self.fabrica = fabrica
+        self.fabrica: Fabrica = fabrica
         self.listaOperarios.append(self)
 
 
@@ -60,9 +67,9 @@ class Operario(Persona):
     #
     # @param pago Monto del salario a pagar
     
-    def recibirPagos(self, pago):
-        self.fabrica.getCuentaBancaria().descontarFondos(pago)
-        self.getCuentaBancaria().anadirFondos(pago)
+    def recibirPagos(self, total):
+        self.fabrica.getCuentaBancaria().descontarFondos(total)
+        self.getCuentaBancaria().anadirFondos(total)
 
 
     # Devuelve una representación en cadena del objeto Operario.
