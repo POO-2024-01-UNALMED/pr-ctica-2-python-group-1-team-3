@@ -53,8 +53,22 @@ textoHojaDeVida2.place(relx=0.55, rely=0.32)
 textoHojaDeVida2.bind("<Button-2>", mensaje)
 
 # Seccion p6 - Seccion donde  deben estar 4 imagenes de cada desarrollador usando el posicionamiento grid
-# imagenDesarrollador1 = tk.PhotoImage(file='/images/OIP.jfif')
-# tk.Label(ventanaMain, image=imagenDesarrollador1).pack()
+iframe = tk.Frame(ventanaMain, width=500, height=400, bg="lightgray")
+iframe.place(relx=1.0, rely=1.0, anchor="se")
+
+image1 = tk.PhotoImage(file="/imagen.png")  # Reemplaza con la ruta a tu imagen
+
+
+section1 = tk.Label(iframe, image=image1, bg="red")
+section2 = tk.Label(iframe, text="Sección 2", bg="blue")
+section3 = tk.Label(iframe, text="Sección 3", bg="green")
+section4 = tk.Label(iframe, text="Sección 4", bg="yellow")
+
+section1.grid(row=0, column=0, sticky="nsew")
+section2.grid(row=0, column=1, sticky="nsew")
+section3.grid(row=1, column=0, sticky="nsew")
+section4.grid(row=1, column=1, sticky="nsew")
+
 
 #Seccion p5
 
