@@ -1,4 +1,10 @@
-#Esta clase se encarga de la interfaz princiapl del usuario
+# Este módulo pertenece al paquete 'UIMain' y contiene clases relacionadas con la interfaces de usuario y las funcionalidades
+# Incluye la clase 'Main' que representa la interfaz y las interacciones en la aplicacion
+# y métodos para su manipulación. 
+#  
+# Esta clase representa la interfaz de la aplicacion para la interaccion con  el usuario
+#  
+# 
 
 # AUTORES: - Sebastian Estrada Villa
 #          - Valentina Luján Robledo
@@ -46,6 +52,26 @@ textoHojaDeVida2 = tk.Label(hojaDeVidap5,
 textoHojaDeVida2.place(relx=0.55, rely=0.32)
 textoHojaDeVida2.bind("<Button-2>", mensaje)
 
+# Seccion p6 - Seccion donde  deben estar 4 imagenes de cada desarrollador usando el posicionamiento grid
+# imagenDesarrollador1 = tk.PhotoImage(file='/images/OIP.jfif')
+# tk.Label(ventanaMain, image=imagenDesarrollador1).pack()
 
+#Seccion p5
+
+
+#Boton para entrar al menu de la apliacacion
+def open_new_window():
+    # Crear una nueva ventana
+    new_window = tk.Toplevel(ventanaMain)
+    new_window.title("Nueva Ventana")
+    
+    # Configurar el tamaño de la nueva ventana
+    new_window.geometry("300x200")
+    
+    # Añadir un mensaje a la nueva ventana
+    label = tk.Label(new_window, text="¡Esta es una nueva ventana!")
+    label.pack(pady=20)
+
+botonMenu = tk.Button(ventanaMain, text="Abrir Nueva Ventana", command=open_new_window).place(x=50, y=500, height=50, width=150)
 
 ventanaMain.mainloop()
