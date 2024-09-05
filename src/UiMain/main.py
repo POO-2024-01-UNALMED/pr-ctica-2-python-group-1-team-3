@@ -4,8 +4,8 @@
 #  
 # Esta clase representa la interfaz de la aplicacion para la interaccion con  el usuario
 #  
-# 
-
+#
+from dataclasses import field
 # AUTORES: - Sebastian Estrada Villa
 #          - Valentina Luján Robledo
 #          - Santiago Ochoa Quintero
@@ -15,77 +15,70 @@
 from tkinter import *
 import tkinter as tk
 
-#Creacion ventana principal
+#Creacion ventana
 ventanaMain = tk.Tk()
-ventanaMain.title("Inicio")
-ventanaMain.geometry("1000x800")
+ventanaMain.geometry('600x600')
+ventanaMain.title('Inicio')
 
-#Seccion p3 - Saludo de bienvenida en la esquina superior derecha
-bienvenidaP3 = tk.Label(ventanaMain, text="Bienvenid@ usuari@ a \n Delicia fresca ", width=30, height=10, font=('Helvetica', 14)).grid(row=2, column=0, padx=2, pady=1)
+#Funciones Eventos
 
-#Seccion p5 - Esquina superior derecha donde estara cada hoja de vida de cada desarrollador
-
-#Funcion para cambiar el texto de las hojas de vida
+#Evento click  - Cambio hoja de vida
 def mensaje(Evento):
-    texto = textoHojaDeVida1.cget("text")
-    
-    print(texto)
-    
-    if (texto == "Nombre desarrollador 1"):
-        textoHojaDeVida1.config(text="Nombre desarrollador 2")
+    texto = hojaDeVida.cget("text")
+
+    if (texto == "Nombre desarrollador" or texto == "Descripcion de Proyecto"):
+        hojaDeVida.config(text="Nombre desarrollador 2")
+        hojaDeVida2.config(text="Texto1 Texto1 Texto1 Texto1 Texto1 \nTexto1 Texto1 Texto1 Texto1 Texto1 \nTexto1 Texto1 Texto1")
     if (texto == "Nombre desarrollador 2"):
-        textoHojaDeVida1.config(text='Nombre desarrollador 3')
+        hojaDeVida.config(text='Nombre desarrollador 3')
+        hojaDeVida2.config(text="Texto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2")
     if (texto == "Nombre desarrollador 3"):
-        textoHojaDeVida1.config(text='Nombre desarrollador 1')
+        hojaDeVida.config(text='Nombre desarrollador')
+        hojaDeVida2.config(text="Texto Texto Texto Texto Texto \nTexto Texto Texto Texto Texto \nTexto Texto Texto")
 
-#Frame principal 
-hojaDeVidap5 = tk.Frame(ventanaMain, bg="#f8f8f8", height=100).place(relx=0.5, rely=0, relheight=0.5, relwidth=0.5)
+#Frame 1 - Parte izquierda de la pantalla
+frame1 = tk.Frame(ventanaMain, bg="white", width=300, height=600, borderwidth=2, relief="sunken")
+frame1.pack(side="left", fill="y")
 
-#Widget principal
-textoHojaDeVida1 = tk.Label(hojaDeVidap5, text="Nombre desarrollador 1", bg="#f8f8f8", font=('Helvetica', 14), cursor="hand1")
-textoHojaDeVida1.place(relx=0.55, rely=0.27)
-textoHojaDeVida1.bind("<Button-1>", mensaje)
+saludoBienvenida = tk.Label(frame1, font=("Helvetica", 12), text="Bienvenido a Delicia Fresca", bg="white", borderwidth=2, relief="sunken")
+saludoBienvenida.place(x=50, y=100)
 
-textoHojaDeVida2 = tk.Label(hojaDeVidap5, 
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nNullam vestibulum mollis urna eget vehicula. \nFusce tempus erat vitae semper egestas. \nQuisque mollis erat leo, sit amet interdum ante eleifend sed.",
-                            bg="#f8f8f8", font=('Helvetica', 10), cursor="hand1", justify=tk.LEFT)
-textoHojaDeVida2.place(relx=0.55, rely=0.32)
-textoHojaDeVida2.bind("<Button-2>", mensaje)
+#Frame 2 - Parte derecha de la ventana
+frame2 = tk.Frame(ventanaMain, bg="white", width=300, height=600, borderwidth=2, relief="sunken")
+frame2.pack(side="right", fill="y")
 
-# Seccion p6 - Seccion donde  deben estar 4 imagenes de cada desarrollador usando el posicionamiento grid
-iframe = tk.Frame(ventanaMain, width=500, height=400, bg="lightgray")
-iframe.place(relx=1.0, rely=1.0, anchor="se")
+hojaDeVida = tk.Label(frame2, bg="white",text="Nombre desarrollador", font=("Helvetica", 14))
+hojaDeVida.place(x=50, y=50)
 
-image1 = tk.PhotoImage(file="/imagen.png")  # Reemplaza con la ruta a tu imagen
+hojaDeVida.bind("<Button-1>", mensaje)
 
+hojaDeVida2 = tk.Label(frame2, bg="white", text="Texto Texto Texto Texto Texto \nTexto Texto Texto Texto Texto \nTexto Texto Texto", font=("Helvetica", 10), justify="left")
+hojaDeVida2.place(x=50, y=100)
+hojaDeVida.bind("<Button-1>", mensaje)
 
-section1 = tk.Label(iframe, image=image1, bg="red")
-section2 = tk.Label(iframe, text="Sección 2", bg="blue")
-section3 = tk.Label(iframe, text="Sección 3", bg="green")
-section4 = tk.Label(iframe, text="Sección 4", bg="yellow")
+subFrame2 = tk.Frame(frame2, bg="white")
+subFrame2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
 
-section1.grid(row=0, column=0, sticky="nsew")
-section2.grid(row=0, column=1, sticky="nsew")
-section3.grid(row=1, column=0, sticky="nsew")
-section4.grid(row=1, column=1, sticky="nsew")
+# imagen1 = tk.PhotoImage(file=" imagenes/gato.jpg")
 
 
-#Seccion p5
+menubar = Menu(ventanaMain)
+ventanaMain.config(menu=menubar)
 
+def descripcion_proyecto():
+    hojaDeVida.config(text='Descripcion de Proyecto')
+    hojaDeVida2.config(text="Text Text Text Text Text \nText Text Text Text Text \nText Text Text")
 
-#Boton para entrar al menu de la apliacacion
-def open_new_window():
-    # Crear una nueva ventana
-    new_window = tk.Toplevel(ventanaMain)
-    new_window.title("Nueva Ventana")
-    
-    # Configurar el tamaño de la nueva ventana
-    new_window.geometry("300x200")
-    
-    # Añadir un mensaje a la nueva ventana
-    label = tk.Label(new_window, text="¡Esta es una nueva ventana!")
-    label.pack(pady=20)
+file_menu = Menu(menubar, tearoff=0)
+file_menu.add_command(label="Salir", command=ventanaMain.quit)
+file_menu.add_command(label="Descripcion del Proyecto",
+                      command=descripcion_proyecto)
+menubar.add_cascade(
+    label="Menu",
+    menu=file_menu
+)
 
-botonMenu = tk.Button(ventanaMain, text="Abrir Nueva Ventana", command=open_new_window).place(x=50, y=500, height=50, width=150)
 
 ventanaMain.mainloop()
+
+
