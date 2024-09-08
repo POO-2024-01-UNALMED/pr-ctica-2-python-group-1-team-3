@@ -20,7 +20,7 @@ import pickle
 import random
 import copy
 
-from src.gestorAplicacion.empresa import Producto
+from gestorAplicacion.empresa import Producto
 
 class Tienda(Moda):
     # La clase 'Tienda' representa una tienda dentro de la empresa.
@@ -44,7 +44,7 @@ class Tienda(Moda):
 
     # CONSTRUCTOR -------------------------------------------------------------------------------------------------------------------------------------------------
     
-    def _init_(self, nombre, vendedor, cuentaBancaria):
+    def __init__(self, nombre, vendedor, cuentaBancaria):
         """
         Constructor que recibe todos los parámetros.
 

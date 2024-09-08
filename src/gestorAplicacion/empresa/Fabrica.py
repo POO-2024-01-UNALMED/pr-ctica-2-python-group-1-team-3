@@ -47,7 +47,7 @@ class Fabrica:
     #
     # @param operario El operario asignado a la fábrica.
     
-    def _init_(self, listaProductos, listaTiendas, cuentaBancaria, operario=None):
+    def __init__(self, listaProductos, listaTiendas, cuentaBancaria, operario=None):
         self.listaProductos = listaProductos
         self.listaTiendas = listaTiendas
         self.cuentaBancaria = cuentaBancaria
