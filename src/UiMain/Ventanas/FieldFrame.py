@@ -11,39 +11,37 @@ class FieldFrame(Frame):
         self.valores = valores
         self.habilitado = habilitado
 
-        self.dict = {}
+        self.entries = {}
 
-        # Crear los campos de texto
-        for i, criterio in enumerate(self.criterios):
-            label = Label(self, text=criterio, font=("Georgia", 12, "bold"), border=2, relief="sunken")
-            entry = Entry(self, font=("Georgia", 10))
+        for idx in range(len(criterios)):
+            criterio = criterios[idx]
+            
+            lbl = Label(self, text=criterio, font=("Georgia", 12, "bold"), border=2, relief="sunken")
+            lbl.grid(row=idx, column=0, padx=5, pady=3)
+            
+            entry_widget = Entry(self, font=("Georgia", 10))
+            entry_widget.grid(row=idx, column=1, padx=5, pady=3)
 
-            # Inserta valores iniciales si se proporcionan
-            if valores is not None:
-                if i < len(self.valores):
-                    entry.insert(0, self.valores[i])
+            # Inserción de valores iniciales si existen
+            if idx < len(self.valores):
+                entry_widget.insert(0, str(self.valores[idx]))
+            
+            # Control de habilitación de los campos
+            if idx < len(self.habilitado) and not self.habilitado[idx]:
+                entry_widget.config(state="disabled")
 
-            # Controla si los campos deben estar habilitados o no
-            if self.habilitado:
-                entry.config(state="disabled" if not self.habilitado else "normal")
+            self.entries[criterio] = entry_widget
 
-            label.grid(row=i, column=0, padx=5, pady=5)
-            entry.grid(row=i, column=1, padx=5, pady=5)
-
-            self.dict[criterio] = entry
-
-    # Obtener valor de un criterio
     def getValue(self, criterio):
-        return self.dict[criterio].get()
+        # Retorna el valor del Entry asociado al criterio
+        entry = self.entries.get(criterio, None)
+        return entry.get() if entry else None
 
-    # Obtener el Entry de un criterio específico
     def getEntry(self, criterio):
-        return self.dict[criterio]
+        # Retorna el Entry asociado al criterio
+        return self.entries.get(criterio, None)
 
-    # Obtener campos vacíos
     def getEntrysVacios(self):
-        entrysVacios = []
-        for criterio in self.criterios:
-            if self.getEntry(criterio).get() == "":
-                entrysVacios.append(criterio)
-        return entrysVacios
+        # Recorre los criterios y verifica cuáles Entries están vacíos
+        vacios = [criterio for criterio in self.criterios if not self.entries[criterio].get()]
+        return vacios
