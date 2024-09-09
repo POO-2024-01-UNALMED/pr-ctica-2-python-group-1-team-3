@@ -45,3 +45,4 @@ class FieldFrame(Frame):
         # Recorre los criterios y verifica cuáles Entries están vacíos
         vacios = [criterio for criterio in self.criterios if not self.entries[criterio].get()]
         return vacios
+        
