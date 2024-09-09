@@ -8,7 +8,6 @@ AUTORES: - Sebastian Estrada Villa
          - Santiago Ochoa Quintero
 """
 
-from random import choice, randint
 from enum import Enum
 #from gestorAplicacion.empleados.Transportador import Transportador
 #from gestorAplicacion.externo.Transporte import Transporte
