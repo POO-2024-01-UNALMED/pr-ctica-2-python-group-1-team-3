@@ -1,4 +1,4 @@
-from src.UiMain.excepciones.Categoria1.ExceptionC1 import ExceptionC1
+from UiMain.excepciones.Categoria1.ExceptionC1 import ExceptionC1
 
 class CamposVacios(ExceptionC1):
     def __init__(self, campos = ""):
