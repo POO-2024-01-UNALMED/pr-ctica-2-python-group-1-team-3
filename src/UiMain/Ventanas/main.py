@@ -27,15 +27,31 @@ ventanaMain.title('Inicio')
 def mensaje(Evento):
     texto = hojaDeVida.cget("text")
 
-    if (texto == "Nombre desarrollador" or texto == "Descripcion de Proyecto"):
-        hojaDeVida.config(text="Nombre desarrollador 2")
-        hojaDeVida2.config(text="Texto1 Texto1 Texto1 Texto1 Texto1 \nTexto1 Texto1 Texto1 Texto1 Texto1 \nTexto1 Texto1 Texto1")
-    if (texto == "Nombre desarrollador 2"):
+    if (texto == "Valentina Luján Robledo" or texto == "Descripcion de Proyecto"):
+        hojaDeVida.config(text="Sebastian Estrada Villa")
+        hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta el deporte, la música  \ny los acertijos.")
+
+        imagen1 = tk.PhotoImage(file="../imagenes/sebastian1.png")
+        labelImagen1.config(image=imagen1)
+
+        imagen2 = tk.PhotoImage(file="../imagenes/sebastian2.png")
+        labelImagen2.config(image=imagen2)
+
+        imagen3 = tk.PhotoImage(file="../imagenes/sebastian3.png")
+        labelImagen3.config(image=imagen3)
+
+        imagen4 = tk.PhotoImage(file="../imagenes/sebastian4.png")
+        labelImagen4.config(image=imagen4)
+
+
+
+    if (texto == "Sebastian Estrada Villa"):
         hojaDeVida.config(text='Nombre desarrollador 3')
         hojaDeVida2.config(text="Texto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2")
     if (texto == "Nombre desarrollador 3"):
-        hojaDeVida.config(text='Nombre desarrollador')
-        hojaDeVida2.config(text="Texto Texto Texto Texto Texto \nTexto Texto Texto Texto Texto \nTexto Texto Texto")
+        hojaDeVida.config(text='Valentina Luján Robledo')
+        hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta la música, bailar y \naprender cosas nuevas ")
+
 
 #Funcion para crear una nueva ventana y cerra la anterior
 
@@ -48,7 +64,7 @@ def descripcion_proyecto():
     hojaDeVida2.config(text="Text Text Text Text Text \nText Text Text Text Text \nText Text Text")
 
 def cambiarImagen(Event):
-    imagen2 = tk.PhotoImage(file="../imagenes/blanco.png")
+    imagen2 = tk.PhotoImage(file="../imagenes/valentina1.png")
     labelImagenSistema.config(image=imagen2)
 
 
@@ -70,10 +86,10 @@ subFrame1_2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
 siguienteVentana = tk.Button(subFrame1_2, text="Nueva ventana", command=nueva_ventana)
 siguienteVentana.place(relx=0.05, rely=0.7, relheight=0.15, relwidth=0.9)
 
-imagenSistema = tk.PhotoImage(file="../imagenes/gato.png")
+imagenSistema = tk.PhotoImage(file="../imagenes/valentina1.png")
 labelImagenSistema = tk.Label(subFrame1_2, image=imagenSistema, width=125, height=125)
 labelImagenSistema.place(relx=0.1, rely=0.05, relheight=0.4, relwidth=0.8)
-labelImagenSistema.bind("<Button-1>", cambiarImagen)
+labelImagenSistema.bind("<Leave>", cambiarImagen)
 
 
 
@@ -85,12 +101,12 @@ subFrame2_1 = tk.Frame(frame2, bg="white")
 subFrame2_1.place(relx=0.05, rely=0.05, relheight=0.25, relwidth=0.9)
 
 
-hojaDeVida = tk.Label(subFrame2_1, bg="white",text="Nombre desarrollador", font=("Helvetica", 14))
+hojaDeVida = tk.Label(subFrame2_1, bg="white",text="Valentina Luján Robledo", font=("Helvetica", 14))
 hojaDeVida.place(x=30, y=10)
 
 hojaDeVida.bind("<Button-1>", mensaje)
 
-hojaDeVida2 = tk.Label(subFrame2_1, bg="white", text="Texto Texto Texto Texto Texto \nTexto Texto Texto Texto Texto \nTexto Texto Texto", font=("Helvetica", 10), justify="left")
+hojaDeVida2 = tk.Label(subFrame2_1, bg="white", text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta la música, bailar y \naprender cosas nuevas ", font=("Arial", 10), justify="left")
 hojaDeVida2.place(x=30, y=50)
 hojaDeVida.bind("<Button-1>", mensaje)
 
@@ -101,19 +117,19 @@ hojaDeVida.bind("<Button-1>", mensaje)
 subFrame2_2 = tk.Frame(frame2, bg="white")
 subFrame2_2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
 
-imagen1 = tk.PhotoImage(file="../imagenes/gato.png")
+imagen1 = tk.PhotoImage(file="../imagenes/valentina1.png")
 labelImagen1 = tk.Label(subFrame2_2, image=imagen1, width=125, height=125)
 labelImagen1.grid(row=0, column=0, padx=1, pady=1)
 
-imagen2 = tk.PhotoImage(file="../imagenes/blanco.png")
+imagen2 = tk.PhotoImage(file="../imagenes/valentina2.png")
 labelImagen2 = tk.Label(subFrame2_2, image=imagen2, width=125, height=125)
 labelImagen2.grid(row=0, column=1, padx=1, pady=1)
 
-imagen3 = tk.PhotoImage(file="../imagenes/blanco.png")
+imagen3 = tk.PhotoImage(file="../imagenes/valentina3.png")
 labelImagen3 = tk.Label(subFrame2_2, image=imagen3, width=125, height=125)
 labelImagen3.grid(row=1, column=0, padx=1, pady=1)
 
-imagen4 = tk.PhotoImage(file="../imagenes/gato.png")
+imagen4 = tk.PhotoImage(file="../imagenes/valentina4.png")
 labelImagen4 = tk.Label(subFrame2_2, image=imagen4, width=125, height=125)
 labelImagen4.grid(row=1, column=1, padx=1, pady=1)
 
