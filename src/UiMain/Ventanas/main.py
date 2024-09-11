@@ -6,6 +6,7 @@
 #  
 #
 from dataclasses import field
+from distutils.command.clean import clean
 # AUTORES: - Sebastian Estrada Villa
 #          - Valentina Luján Robledo
 #          - Santiago Ochoa Quintero
@@ -15,10 +16,15 @@ from dataclasses import field
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
+
+from setuptools.command.setopt import edit_config
+
+from src.gestorAplicacion.externo.TipoTransporte import TipoTransporte
 
 #Creacion ventana
 ventanaMain = tk.Tk()
-ventanaMain.geometry('600x600')
+ventanaMain.geometry('800x800')
 ventanaMain.title('Inicio')
 
 #Funciones Eventos
@@ -30,27 +36,48 @@ def mensaje(Evento):
     if (texto == "Valentina Luján Robledo" or texto == "Descripcion de Proyecto"):
         hojaDeVida.config(text="Sebastian Estrada Villa")
         hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta el deporte, la música  \ny los acertijos.")
+        global imagen1v
+        imagen1v = tk.PhotoImage(file="../imagenes/sebastian1.png")
+        labelImagen1.config(image=imagen1v)
 
-        imagen1 = tk.PhotoImage(file="../imagenes/sebastian1.png")
-        labelImagen1.config(image=imagen1)
+        global imagen2v
+        imagen2v = tk.PhotoImage(file="../imagenes/sebastian2.png")
+        labelImagen2.config(image=imagen2v)
 
-        imagen2 = tk.PhotoImage(file="../imagenes/sebastian2.png")
-        labelImagen2.config(image=imagen2)
+        global imagen3v
+        imagen3v = tk.PhotoImage(file="../imagenes/sebastian3.png")
+        labelImagen3.config(image=imagen3v)
 
-        imagen3 = tk.PhotoImage(file="../imagenes/sebastian3.png")
-        labelImagen3.config(image=imagen3)
-
-        imagen4 = tk.PhotoImage(file="../imagenes/sebastian4.png")
-        labelImagen4.config(image=imagen4)
+        global imagen4v
+        imagen4v = tk.PhotoImage(file="../imagenes/sebastian4.png")
+        labelImagen4.config(image=imagen4v)
 
 
 
     if (texto == "Sebastian Estrada Villa"):
-        hojaDeVida.config(text='Nombre desarrollador 3')
+        hojaDeVida.config(text='Santiago Ochoa Quintero')
         hojaDeVida2.config(text="Texto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2")
-    if (texto == "Nombre desarrollador 3"):
+    if (texto == "Santiago Ochoa Quintero"):
         hojaDeVida.config(text='Valentina Luján Robledo')
         hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta la música, bailar y \naprender cosas nuevas ")
+
+        global imagen1s
+        imagen1s = tk.PhotoImage(file="../imagenes/valentina1.png")
+        labelImagen1.config(image=imagen1s)
+
+        global imagen2s
+        imagen2s = tk.PhotoImage(file="../imagenes/valentina2.png")
+        labelImagen2.config(image=imagen2s)
+
+        global imagen3s
+        imagen3s = tk.PhotoImage(file="../imagenes/valentina3.png")
+        labelImagen3.config(image=imagen3s)
+
+        global imagen4s
+        imagen4s = tk.PhotoImage(file="../imagenes/valentina2.png")
+        labelImagen4.config(image=imagen4s)
+
+
 
 
 #Funcion para crear una nueva ventana y cerra la anterior
@@ -61,22 +88,36 @@ def nueva_ventana():
 
 def descripcion_proyecto():
     hojaDeVida.config(text='Descripcion de Proyecto')
-    hojaDeVida2.config(text="Text Text Text Text Text \nText Text Text Text Text \nText Text Text")
+    hojaDeVida2.config(text="Delicia fresca es un supermercado que \nse encarga de ofrecer productos de la \nmejor calidad \n\nEste programa nos permite llevar el control de \ntodos los procesos del mercado.")
+
+
+rutasImagenesSistema = [
+    "../imagenes/tienda.png",
+    "../imagenes/precio.png",
+    "../imagenes/cajera.png",
+    "../imagenes/productos.png",
+    "../imagenes/carrito.png",
+]
+
+image_index = 0
 
 def cambiarImagen(Event):
-    imagen2 = tk.PhotoImage(file="../imagenes/valentina1.png")
-    labelImagenSistema.config(image=imagen2)
+    global imagenSistema, image_index
+    image_index = (image_index + 1) % len(rutasImagenesSistema)
+    img = tk.PhotoImage(file=rutasImagenesSistema[image_index])  # Cargar la nueva imagen
+    labelImagenSistema.config(image=img)
+    labelImagenSistema.image = img
 
 
 #Frame 1 - Parte izquierda de la pantalla
-frame1 = tk.Frame(ventanaMain, bg="white", width=300, height=600, borderwidth=2, relief="sunken")
-frame1.pack(side="left", fill="y")
+frame1 = tk.Frame(ventanaMain, bg="white", borderwidth=2, relief="sunken")
+frame1.place(relx=0, rely=0, relwidth=0.5, relheight=1)
 
 subFrame1_1 = tk.Frame(frame1, bg="white")
 subFrame1_1.place(relx=0.05, rely=0.05, relheight=0.20, relwidth=0.9)
 
-saludoBienvenida = tk.Label(subFrame1_1, font=("Helvetica", 12), text="Bienvenido a Delicia Fresca", bg="white", borderwidth=2, relief="sunken")
-saludoBienvenida.place(x=30, y=50)
+saludoBienvenida = tk.Label(subFrame1_1, font=("Helvetica", 15), text="Bienvenido a Delicia Fresca", bg="white", borderwidth=2, relief="sunken")
+saludoBienvenida.place(relx=0.15, rely=0.4)
 
 #Subframe 1 Frame parte derecha Boton para avanzar a la siguiente ventana
 
@@ -86,28 +127,28 @@ subFrame1_2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
 siguienteVentana = tk.Button(subFrame1_2, text="Nueva ventana", command=nueva_ventana)
 siguienteVentana.place(relx=0.05, rely=0.7, relheight=0.15, relwidth=0.9)
 
-imagenSistema = tk.PhotoImage(file="../imagenes/valentina1.png")
-labelImagenSistema = tk.Label(subFrame1_2, image=imagenSistema, width=125, height=125)
-labelImagenSistema.place(relx=0.1, rely=0.05, relheight=0.4, relwidth=0.8)
+imagenSistema = tk.PhotoImage(file="../imagenes/tienda.png")
+labelImagenSistema = tk.Label(subFrame1_2, image=imagenSistema, bg="white")
+labelImagenSistema.place(relx=0.1, rely=0.05, relheight=0.6, relwidth=0.8)
 labelImagenSistema.bind("<Leave>", cambiarImagen)
 
 
 
 #Frame 2 - Parte derecha de la ventana
-frame2 = tk.Frame(ventanaMain, bg="white", width=300, height=600, borderwidth=2, relief="sunken")
-frame2.pack(side="right", fill="y")
+frame2 = tk.Frame(ventanaMain, bg="white", borderwidth=2, relief="sunken")
+frame2.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
 
 subFrame2_1 = tk.Frame(frame2, bg="white")
 subFrame2_1.place(relx=0.05, rely=0.05, relheight=0.25, relwidth=0.9)
 
 
-hojaDeVida = tk.Label(subFrame2_1, bg="white",text="Valentina Luján Robledo", font=("Helvetica", 14))
-hojaDeVida.place(x=30, y=10)
+hojaDeVida = tk.Label(subFrame2_1, bg="white",text="Valentina Luján Robledo", font=("Helvetica", 16))
+hojaDeVida.place(relx=0.20, rely=0.20)
 
 hojaDeVida.bind("<Button-1>", mensaje)
 
-hojaDeVida2 = tk.Label(subFrame2_1, bg="white", text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta la música, bailar y \naprender cosas nuevas ", font=("Arial", 10), justify="left")
-hojaDeVida2.place(x=30, y=50)
+hojaDeVida2 = tk.Label(subFrame2_1, bg="white", text="Estudio Ingeniería de Sistemas e Informática \n\nMe gusta la música, bailar y aprender \ncosas nuevas ", font=("Arial", 12), justify="left")
+hojaDeVida2.place(relx=0.10, rely=0.40)
 hojaDeVida.bind("<Button-1>", mensaje)
 
 
@@ -115,22 +156,22 @@ hojaDeVida.bind("<Button-1>", mensaje)
 
 
 subFrame2_2 = tk.Frame(frame2, bg="white")
-subFrame2_2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
+subFrame2_2.place(relx=0.125, rely=0.35, relheight=0.40, relwidth=0.75)
 
 imagen1 = tk.PhotoImage(file="../imagenes/valentina1.png")
-labelImagen1 = tk.Label(subFrame2_2, image=imagen1, width=125, height=125)
+labelImagen1 = tk.Label(subFrame2_2, image=imagen1, width=150, height=150)
 labelImagen1.grid(row=0, column=0, padx=1, pady=1)
 
 imagen2 = tk.PhotoImage(file="../imagenes/valentina2.png")
-labelImagen2 = tk.Label(subFrame2_2, image=imagen2, width=125, height=125)
+labelImagen2 = tk.Label(subFrame2_2, image=imagen2, width=150, height=150)
 labelImagen2.grid(row=0, column=1, padx=1, pady=1)
 
 imagen3 = tk.PhotoImage(file="../imagenes/valentina3.png")
-labelImagen3 = tk.Label(subFrame2_2, image=imagen3, width=125, height=125)
+labelImagen3 = tk.Label(subFrame2_2, image=imagen3, width=150, height=150)
 labelImagen3.grid(row=1, column=0, padx=1, pady=1)
 
 imagen4 = tk.PhotoImage(file="../imagenes/valentina4.png")
-labelImagen4 = tk.Label(subFrame2_2, image=imagen4, width=125, height=125)
+labelImagen4 = tk.Label(subFrame2_2, image=imagen4, width=150, height=150)
 labelImagen4.grid(row=1, column=1, padx=1, pady=1)
 
 
@@ -149,7 +190,7 @@ menubar.add_cascade(
 
 
 ventana2 = tk.Tk()
-ventana2.geometry('1000x500')
+ventana2.geometry('1000x1000')
 ventana2.title('Delicia Fresca')
 
 def ventana2Info():
@@ -162,6 +203,14 @@ def ventanaPrincipal():
 def acercaDeFunction():
     messagebox.showinfo("Delicia Fresca", "¡Hola, esta es una ventana emergente!")
 
+def funcionalidad1Interfaz():
+    nombreDelProceso.config(text="Envio Pedidos")
+    descripcionProceso.config(text="Esta funcionalidad se encarga de ...")
+
+
+
+def borrarButton():
+    print("Borrado")
 
 
 menu2 = Menu(ventana2)
@@ -177,7 +226,7 @@ menu2.add_cascade(
 )
 
 file_menu2 = Menu(menu2, tearoff=0)
-file_menu2.add_command(label="Funcionalidad 1", command=ventana2Info)
+file_menu2.add_command(label="Funcionalidad 1", command=funcionalidad1Interfaz)
 file_menu2.add_command(label="Funcionalidad 2", command=ventanaPrincipal)
 file_menu2.add_command(label="Funcionalidad 3", command=ventanaPrincipal)
 file_menu2.add_command(label="Funcionalidad 4", command=ventanaPrincipal)
@@ -196,7 +245,7 @@ menu2.add_cascade(
     menu=file_menu3
 )
 
-ventana2frame1 = tk.Frame(ventana2, bg="white", width=300, height=600, borderwidth=2, relief="sunken")
+ventana2frame1 = tk.Frame(ventana2, bg="red", width=300, height=600, borderwidth=2, relief="sunken")
 ventana2frame1.place(x=100, y=20, height=200, width=800)
 
 ventana2subframe1 = tk.Frame(ventana2frame1, bg="white")
@@ -214,8 +263,106 @@ descripcionProceso.place(relx=0.05, rely=0.1, relheight=1, relwidth=0.9)
 
 #Interfaz Funcionalidad
 
-ventana2funcionalidad = tk.Frame(ventana2, bg="white")
-ventana2funcionalidad.place(x=100, y=250, height=200, width=800)
+
+#Lista de clientes - Tienda - Productso con una cantidad menor que 5 - Transporte - Envio gratis
+
+# ventana2funcionalidad = tk.Frame(ventana2, bg="white")
+# ventana2funcionalidad.place(x=100, y=250, relwidth=0.8, relheight=0.5)
+#
+# ventana2FuncionalidadFrame1 = tk.Frame(ventana2funcionalidad, bg="red")
+# ventana2FuncionalidadFrame1.place(relx=0.1, rely=0.6, relheight=0.3, relwidth=0.8)
+#
+# botonBorrar = tk.Button(ventana2FuncionalidadFrame1, text="Borrar", command=borrarButton)
+# botonBorrar.place(relx=0.05, rely=0.1, relheight=0.2, relwidth=0.2)
+#
+# funcionalidad1frame = tk.Frame(ventana2funcionalidad, bg="red")
+# #funcionalidad1frame.place(relx=0.1, rely=0.1, relheight=0.4, relwidth=0.8)
+#
+#
+# productos = {
+#     "Frutas y Verduras": [
+#         "Manzana", "Zanahoria", "Pepino", "Limon", "Piña", "Pera", "Tomate", "Frambuesa", "Lechuga", "Sandia"
+#     ],
+#     "Panadería": [
+#         "Pan", "Sanduche", "Pandebono", "Pan hojaldrado", "Galletas", "Palito de queso", "Tostada", "Ponque", "Pan tajado", "Almojabana"
+#     ],
+#     "Salsas y Mermeladas": [
+#         "Mermelada de frambuesa", "Mermelada de piña", "Mermelada de mora", "Mayonesa", "Salsa de tomate", "Mermelada de fresa",
+#         "Mermelada de kiwi", "Mermelada de frutos rojos", "Salsa BBQ", "Salsa de soya"
+#     ],
+#     "Bebidas": [
+#         "Te verde", "Jugo de naranja", "Leche de almendras", "Leche de avena", "Yogur de soya", "Cafe instantaneo", "Bebida achocolatada",
+#         "Leche de coco", "Bebida hidratante", "Jugo de mora"
+#     ]
+# }
+# tiendas = ['Delicia Fresca Norte', 'Delicia Fresca Sur', 'Delicia Fresca Centro']
+#
+# clientes = [
+#     "Esteban Carrillo",
+#     "Tiffany Mendoza",
+#     "Santiago Perez",
+#     "Mariana Lopera",
+#     "Jose Manuel Vergara",
+#     "Camila Zapata",
+#     "Miguel Acosta",
+#     "Martin Berrio"
+# ]
+# opciones = [
+#     "SI",
+#     "NO"
+# ]
+# TipoTransporte = [
+#     "Camion",
+#     "Bicicleta",
+#     "Caminando",
+#     "Moto",
+#     "Carro",
+#     "Avion"
+# ]
+#
+#
+# # Crear una lista de productos con separadores de categorías
+# productos_lista = []
+# for categoria, productos_en_categoria in productos.items():
+#     productos_lista.append(f"-- {categoria} --")  # Agregar el separador
+#     productos_lista.extend(productos_en_categoria)  # Agregar los productos
+#
+# label = tk.Label(funcionalidad1frame, text="Selecciona un producto", font=('Arial', 12))
+# label.pack(pady=1, padx=0.1)
+#
+# # Crear el combobox (lista desplegable)
+# combo = ttk.Combobox(funcionalidad1frame, values=productos_lista, state="readonly")
+# combo.place(relx=0.05, rely=0.1, relheight=0.2, relwidth=0.2)
+#
+# label2 = tk.Label(funcionalidad1frame, text="Selecciona una tienda", font=('Arial', 12))
+# label2.pack(pady=2, padx=0.1)
+#
+# # Crear el combobox (lista desplegable)
+# combo2 = ttk.Combobox(funcionalidad1frame, values=tiendas, state="readonly")
+# combo2.place(relx=0.05, rely=0.3, relheight=0.2, relwidth=0.2)
+#
+# label3 = tk.Label(funcionalidad1frame, text="Selecciona un cliente", font=('Arial', 12))
+# label3.pack(pady=2, padx=0.1)
+#
+# # Crear el combobox (lista desplegable)
+# combo3 = ttk.Combobox(funcionalidad1frame, values=clientes, state="readonly")
+# combo3.place(relx=0.05, rely=0.3, relheight=0.2, relwidth=0.2)
+#
+# entry = tk.Entry(funcionalidad1frame, width=50)
+# entry.pack(pady=2, padx=0.1)
+#
+# label4 = tk.Label(funcionalidad1frame, text="Selecciona un Tipo de transporte", font=('Arial', 12))
+# label4.pack(pady=2, padx=0.1)
+#
+# combo4 = ttk.Combobox(funcionalidad1frame, values=TipoTransporte, state="readonly")
+# combo4.place(relx=0.05, rely=0.3, relheight=0.2, relwidth=0.2)
+#
+# label5 = tk.Label(funcionalidad1frame, text="Aplicar envio Gratis?", font=('Arial', 12))
+# label5.pack(pady=2, padx=0.1)
+#
+# combo5 = ttk.Combobox(funcionalidad1frame, values=opciones, state="readonly")
+# combo5.place(relx=0.05, rely=0.3, relheight=0.2, relwidth=0.2)
+
 
 
 
