@@ -27,8 +27,8 @@ En esta aplicación podrá encontrar las siguientes opciones:
 """
 
 class VentanaEntrada(tk.Frame):
-    def _init_(self, master=None):
-        super()._init_(master)
+    def __init__(self, master=None):
+        super().__init__(master)
         self.configurar_texto()
 
     def configurar_texto(self):
@@ -40,7 +40,7 @@ class VentanaEntrada(tk.Frame):
         area_texto.pack(expand=True, fill='both')
 
 # Prueba de uso de la ventana en una aplicación
-if _name_ == "_main_":
+if __name__ == "__main__":
     root = tk.Tk()
     ventana = VentanaEntrada(master=root)
     ventana.pack(expand=True, fill='both')

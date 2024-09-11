@@ -6,7 +6,7 @@ import tkinter as tk
 
 from tkinter import Menu, messagebox, BOTH, Frame
 from UiMain.Funcionalidades.EvaluacionOperacion import EvaluacionOperacion
-from UiMain.Funcionalidades.AñadirCliente import AñadirCliente
+from UiMain.Funcionalidades.AnadirCliente import AnadirCliente
 from UiMain.Funcionalidades.AñadirProducto import AñadirProducto
 from UiMain.Funcionalidades.ProveerTiendas import ProveerTiendas
 from UiMain.Funcionalidades.PagoDeNomina import PagoDeNomina
@@ -20,8 +20,8 @@ sys.path.append('../')
 
 
 class VentanaPrincipal(tk.Tk):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         self.configurar_ventana()
 
         # Barra de menú superior
@@ -92,7 +92,7 @@ class VentanaPrincipal(tk.Tk):
 
     def anadir_cliente(self):
         """Abre la ventana de 'Añadir Cliente'."""
-        self.cambiar_pantalla(AñadirCliente(self))
+        self.cambiar_pantalla(AnadirCliente(self))
 
     def cambiar_pantalla(self, nueva_funcionalidad):
         """Limpia la ventana actual y muestra la nueva funcionalidad."""
@@ -126,6 +126,6 @@ class VentanaPrincipal(tk.Tk):
 
 
 # Uso de la ventana principal
-if _name_ == "_main_":
+if __name__ == "__main__":
     app = VentanaPrincipal()
     app.mainloop()
