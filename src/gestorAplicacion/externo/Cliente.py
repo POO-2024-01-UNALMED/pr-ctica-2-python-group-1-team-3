@@ -123,3 +123,7 @@ class Cliente:
     @classmethod
     def setListaClientes(cls, listaClientes):
         cls._listaClientes = listaClientes
+
+    @staticmethod
+    def getNextID():
+        return len(Cliente._listaClientes) + 1
