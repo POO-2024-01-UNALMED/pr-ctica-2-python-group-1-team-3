@@ -8,7 +8,7 @@ class FieldFrame(Frame):
         self.tituloCriterios = tituloCriterios
         self.criterios = criterios
         self.tituloValores = tituloValores
-        self.valores = valores
+        self.valores = valores if valores is not None else []  # Si valores es None, lo asignamos a una lista vacía
         self.habilitado = habilitado
 
         self.entries = {}

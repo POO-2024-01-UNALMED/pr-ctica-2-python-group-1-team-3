@@ -1,80 +1,94 @@
 import tkinter as tk
 from tkinter import Frame, messagebox
 
+# Importación de excepciones personalizadas
 from UiMain.excepciones.Categoria1.CamposVacios import CamposVacios
 from UiMain.excepciones.Categoria2.SoloNumeros import SoloNumeros
 from UiMain.excepciones.Categoria2.DireccionInvalida import DireccionInvalida
 from UiMain.excepciones.Categoria1.ClienteYaExistente import ClienteYaExistente
 from UiMain.excepciones.Categoria2.NombreInvalido import NombreInvalido
 
+# Importación de clases para la gestión de clientes y cuentas bancarias
 from gestorAplicacion.externo.Cliente import Cliente
 from gestorAplicacion.externo.CuentaBancaria import CuentaBancaria
 from UiMain.Ventanas.FieldFrame import FieldFrame
-from baseDatos.Deserializador import Deserializador  # Asegúrate de importar el Deserializador
+from baseDatos.Deserializador import Deserializador  # Deserializar los datos necesarios
 
 class AnadirCliente(Frame):
-
-    def __init__(self, window):
-        super().__init__(window)
-        self.configure(bg="#f391e8")
-        for i in range(6):
-            self.rowconfigure(i, weight=1)
-
+    def __init__(self, ventana):
+        super().__init__(ventana)
+        
+        # Configuración del fondo con tonos rosados
+        self.configure(bg="#f8d5e1")
+        
+        # Distribución de filas y columnas
+        for fila in range(6):
+            self.rowconfigure(fila, weight=1)
         self.columnconfigure(0, weight=2)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=2)
 
-        frameCabecera = tk.Frame(self, bg="#f391e8")
-        frameCabecera.grid(row=0, column=1, padx=5, pady=5)
+        # Frame para el título
+        cabecera = tk.Frame(self, bg="#f8d5e1")
+        cabecera.grid(row=0, column=1, padx=10, pady=10)
 
-        titulo = tk.Label(frameCabecera, text='Añadir cliente', font=("Georgia", 15, "bold"), bg="#f2b2eb", relief="raised", border=3)
-        titulo.pack(pady=5, fill="x")
+        # Título principal
+        titulo = tk.Label(cabecera, text='Añadir cliente', font=("Georgia", 18, "bold"), bg="#f2a6c2", relief="raised", border=4)
+        titulo.pack(pady=10, fill="x")
 
-        textoDescripcion = """Aquí podrá añadir un cliente rellenando el siguiente formulario."""
-        descripcion = tk.Label(frameCabecera, text=textoDescripcion, font=("Georgia", 12), bg="#f2b2eb", border=2, relief="sunken")
-        descripcion.pack(pady=5)
+        # Texto descriptivo
+        descripcion = """Complete los campos del formulario para añadir un nuevo cliente."""
+        labelDescripcion = tk.Label(cabecera, text=descripcion, font=("Georgia", 12), bg="#fbcfe0", border=2, relief="sunken")
+        labelDescripcion.pack(pady=10)
 
-        contenedorField = tk.Frame(self, width=100, height=200, bg="#f2b2eb")
-        contenedorField.grid(row=1, column=1, pady=3, sticky="nsew")
-        contenedorField.rowconfigure(0, weight=1)
-        contenedorField.columnconfigure(0, weight=1)
-        contenedorField.columnconfigure(1, weight=1)
-        contenedorField.columnconfigure(2, weight=1)
+        # Contenedor de campos
+        contenedorCampos = tk.Frame(self, width=100, height=200, bg="#fbcfe0")
+        contenedorCampos.grid(row=1, column=1, pady=10, sticky="nsew")
+        contenedorCampos.rowconfigure(0, weight=1)
+        contenedorCampos.columnconfigure(0, weight=1)
+        contenedorCampos.columnconfigure(1, weight=1)
+        contenedorCampos.columnconfigure(2, weight=1)
 
+        # Criterios del formulario
         self.criterios = ["ID", "Nombre", "Direccion", "Cuenta Bancaria"]
-
-        # Deserializar datos
+        
+        # Deserialización de los datos necesarios
         Deserializador.deserializar()
 
-        # Calcular el ID inicial basado en la longitud de la lista de clientes
+        # Calcular el ID inicial del cliente basado en la longitud de la lista de clientes
         cliente_id = Cliente.getNextID()
 
-        valores_iniciales = [cliente_id, "", "", ""]  # Lista de valores iniciales, con ID incluido
-        habilitado = [False, True, True, True]  # El campo ID no es editable
+        # Valores iniciales para los campos, con el ID como no editable
+        valores_iniciales = [cliente_id, "", "", ""]
+        habilitados = [False, True, True, True]  # Solo el ID está deshabilitado
 
-        # Creación del FieldFrame con los valores actualizados
-        self.fp = FieldFrame(contenedorField, "Criterio", self.criterios, "Valor", valores_iniciales, habilitado)
-        self.fp.configure(bg="#f1b6ea", relief="raised", border=2, padx=20, pady=20)
-        self.fp.grid(row=0, column=1, padx=50, pady=50, sticky="nsew")
+        # Crear FieldFrame para ingresar los datos del cliente
+        self.fp = FieldFrame(contenedorCampos, "Criterio", self.criterios, "Valor", valores_iniciales, habilitados)
+        self.fp.configure(bg="#f2a6c2", relief="raised", border=2, padx=20, pady=20)
+        self.fp.grid(row=0, column=1, padx=30, pady=30, sticky="nsew")
 
-        frameBotones = Frame(self, bg="#f391e8")
-        frameBotones.grid(row=2, column=1, padx=5)
+        # Frame para los botones de acción
+        botonFrame = Frame(self, bg="#f8d5e1")
+        botonFrame.grid(row=2, column=1, padx=10)
 
-        botonIngresar = tk.Button(frameBotones, text="Ingresar Cliente", command=self.ingresarCliente, width=15, height=3, bg="#9d088c",
-                                  font=("Georgia", 14, "bold"), fg="#ffffff", border=2, relief="raised")
-        botonIngresar.grid(row=0, column=0, padx=6)
+        # Botón para agregar cliente
+        botonAgregar = tk.Button(botonFrame, text="Agregar Cliente", command=self.ingresarCliente, width=15, height=2, bg="#e895b0", font=("Georgia", 13, "bold"), fg="#ffffff", border=3, relief="raised")
+        botonAgregar.grid(row=0, column=0, padx=10)
 
-        botonBorrar = tk.Button(frameBotones, text="Borrar", command=self.borrar, width=10, height=3, bg="#9d088c",
-                                font=("Georgia", 14, "bold"), fg="#ffffff", border=2, relief="raised")
-        botonBorrar.grid(row=0, column=1, padx=6)
+        # Botón para limpiar campos
+        botonLimpiar = tk.Button(botonFrame, text="Limpiar", command=self.borrar, width=10, height=2, bg="#e895b0", font=("Georgia", 13, "bold"), fg="#ffffff", border=3, relief="raised")
+        botonLimpiar.grid(row=0, column=1, padx=10)
 
     def ingresarCliente(self):
+        """
+        Maneja la lógica para agregar un cliente, validando los campos y mostrando mensajes de error si es necesario.
+        """
         nombre = self.fp.getValue("Nombre")
         direccion = self.fp.getValue("Direccion")
         cuenta_bancaria = self.fp.getValue("Cuenta Bancaria")
 
         try:
-            # Validar si hay campos vacíos
+            # Validar campos vacíos
             if len(self.fp.getEntrysVacios()) > 0:
                 raise CamposVacios()
 
@@ -82,7 +96,7 @@ class AnadirCliente(Frame):
             if len(nombre.split()) != 2:
                 raise NombreInvalido()
 
-            # Validar que el cliente no exista ya
+            # Validar si el cliente ya existe
             for cliente in Cliente.getListaClientes():
                 if cliente.getNombre() == nombre:
                     raise ClienteYaExistente()
@@ -91,7 +105,7 @@ class AnadirCliente(Frame):
             if not any(char.isdigit() for char in direccion) or not any(char.isalpha() for char in direccion):
                 raise DireccionInvalida()
 
-            # Crear la cuenta bancaria
+            # Validar cuenta bancaria (debe contener solo números)
             if not cuenta_bancaria.isdigit():
                 raise SoloNumeros("cuenta bancaria")
             nueva_cuenta = CuentaBancaria(cuenta_bancaria, 100000)  # Saldo inicial = 100.000
@@ -99,13 +113,12 @@ class AnadirCliente(Frame):
             # Crear el nuevo cliente
             nuevo_cliente = Cliente(nombre, direccion, nueva_cuenta)
 
-            messagebox.showinfo('Cliente agregado', 'El cliente fue agregado con éxito.')
+            messagebox.showinfo('Éxito', 'El cliente fue agregado con éxito.')
             self.borrar()
 
         except CamposVacios as e:
-            campos = self.fp.getEntrysVacios()
-            c = "\n\n" + "\n".join([campo for campo in campos])
-            messagebox.showerror("Error", str(CamposVacios(c)))
+            campos = "\n".join(self.fp.getEntrysVacios())
+            messagebox.showerror("Campos Vacíos", f"Los siguientes campos están vacíos:\n{campos}")
 
         except ClienteYaExistente as e:
             messagebox.showerror("Error", str(e))
@@ -120,6 +133,9 @@ class AnadirCliente(Frame):
             messagebox.showerror("Error", str(e))
 
     def borrar(self):
+        """
+        Limpia todos los campos del formulario excepto el ID.
+        """
         for criterio in self.criterios:
-            if criterio != "ID":  # El ID no se borra.
+            if criterio != "ID":  # El ID no se borra
                 self.fp.getEntry(criterio).delete(0, tk.END)

@@ -16,6 +16,8 @@
 #from gestorAplicacion.externo.CuentaBancaria import CuentaBancaria
 #from gestorAplicacion.empresa.Producto import Producto
 #from gestorAplicacion.empresa.Tienda import Tienda
+from UiMain.excepciones.Categoria1.ProductoYaExistente import ProductoYaExistente
+
 import copy
 import pickle
 
@@ -188,13 +190,11 @@ class Fabrica:
     # @param producto Producto a añadir.
     #
     # @throws ProductoYaExistente si el producto ya está en la lista.
-    """
     def anadirProducto(self, producto):
         if producto.getNombre() in [p.getNombre() for p in self.listaProductos]:
             raise ProductoYaExistente()
         else:
             self.listaProductos.append(producto)
-    """
 
     # GETTERS Y SETTERS ---------------------------------------------------------
 

@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import Menu, messagebox, BOTH, Frame
 from UiMain.Funcionalidades.EvaluacionOperacion import EvaluacionOperacion
 from UiMain.Funcionalidades.AnadirCliente import AnadirCliente
-from UiMain.Funcionalidades.AñadirProducto import AñadirProducto
+from UiMain.Funcionalidades.AnadirProducto import AnadirProducto
 from UiMain.Funcionalidades.ProveerTiendas import ProveerTiendas
 from UiMain.Funcionalidades.PagoDeNomina import PagoDeNomina
 from UiMain.Funcionalidades.EnviarPedido import EnviarPedido
@@ -88,7 +88,7 @@ class VentanaPrincipal(tk.Tk):
         self.cambiar_pantalla(EvaluacionOperacion(self))
 
     def anadir_producto(self):
-        self.cambiar_pantalla(AñadirProducto(self))
+        self.cambiar_pantalla(AnadirProducto(self))
 
     def anadir_cliente(self):
         """Abre la ventana de 'Añadir Cliente'."""
