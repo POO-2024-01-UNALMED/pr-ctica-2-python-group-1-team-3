@@ -5,8 +5,6 @@
 # Esta clase representa la interfaz de la aplicacion para la interaccion con  el usuario
 #  
 #
-from dataclasses import field
-from distutils.command.clean import clean
 # AUTORES: - Sebastian Estrada Villa
 #          - Valentina Luján Robledo
 #          - Santiago Ochoa Quintero
@@ -16,7 +14,8 @@ from distutils.command.clean import clean
 from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import ttk
+from baseDatos.Deserializador import Deserializador
+
 
 from setuptools.command.setopt import edit_config
 
@@ -104,6 +103,7 @@ def mensaje(Evento):
 
 def nueva_ventana():
     ventanaMain.withdraw()
+    Deserializador.deserializar() # Para cargar los objetos serializados
     ventana2.deiconify()
 
 def descripcion_proyecto():
