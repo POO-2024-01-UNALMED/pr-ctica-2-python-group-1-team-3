@@ -17,8 +17,8 @@ class Devoluciones(Frame):
     listaProductos = []
     productoElegido = None
 
-    def _init_(self, window):
-        super()._init_(window)
+    def __init__(self, window):
+        super().__init__(window)
 
         # Deserialización de los datos necesarios
         Deserializador.deserializar()
@@ -143,3 +143,6 @@ class Devoluciones(Frame):
         desplegableProducto.set('')
         Productos.grid_remove()
         boton.grid_remove()
+
+
+       
