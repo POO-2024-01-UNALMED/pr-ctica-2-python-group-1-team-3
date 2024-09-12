@@ -12,8 +12,8 @@ from gestorAplicacion.empresa.Fabrica import Fabrica
 from gestorAplicacion.empresa.Producto import Producto
 
 class AnadirProducto(Frame):
-    def _init_(self, ventana):
-        super()._init_(ventana)
+    def __init__(self, ventana):
+        super().__init__(ventana)
         
         # Configuración del fondo con tonos rosados
         self.configure(bg="#f8d5e1")
