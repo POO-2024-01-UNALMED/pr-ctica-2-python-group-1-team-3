@@ -81,7 +81,7 @@ class Factura:
         
         :return: El costo del envío basado en el tipo de transporte.
         """
-        return self.transporte.tipo[0].value[1]
+        return self.transporte.tipo.value[1]
 
 
     @staticmethod
