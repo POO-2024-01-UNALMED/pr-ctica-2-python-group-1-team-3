@@ -115,7 +115,7 @@ class Fabrica:
     
     def descontarDinero(self, productoDevuelto):
         total = productoDevuelto.getValor()
-        self.cuentaBancaria.descontarFondos(total)
+        self.cuentaBancaria.disminuirSaldo(total)
         return total
 
 

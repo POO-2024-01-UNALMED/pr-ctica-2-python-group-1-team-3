@@ -7,8 +7,9 @@ AUTORES: - Sebastian Estrada Villa
          - Valentina Luján Robledo
          - Santiago Ochoa Quintero
 """
+from abc import ABC, abstractmethod
 
-class Persona:
+class Persona(ABC):
     """
     La clase abstracta `Persona` representa una persona dentro de la empresa. 
   
@@ -28,7 +29,6 @@ class Persona:
 
 
     # CONSTRUCTORES ----------------------------------------------------------------------------------------------------------------------
-
     def __init__(self, nombre, edad, cedula, cuentaBancaria):
         """
         Constructor que recibe todos los parámetros.
@@ -50,15 +50,16 @@ class Persona:
 
 
     # MÉTODOS 
-
+    
+    @abstractmethod
     def recibirPagos(self, total):
         """
         Método para realizar pagos.
         
         :param total: Monto del pago a realizar
         """
-        self._cuentaBancaria.descontarFondos(total)
-        self.getCuentaBancaria().anadirFondos(total)
+        self._cuentaBancaria.disminuirSaldo(total)
+        self.getCuentaBancaria().incrementarSaldo(total)
 
 
     def __str__(self):

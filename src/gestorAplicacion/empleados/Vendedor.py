@@ -58,8 +58,8 @@ class Vendedor(Persona):
     # @param pago Monto del salario a pagar
     
     def recibirPagos(self, total):
-        self.tienda.getCuentaBancaria().descontarFondos(total)
-        self.getCuentaBancaria().anadirFondos(total)
+        self.tienda.getCuentaBancaria().disminuirSaldo(total)
+        self.getCuentaBancaria().incrementarSaldo(total)
 
 
     # Devuelve una representación en cadena del objeto Vendedor.

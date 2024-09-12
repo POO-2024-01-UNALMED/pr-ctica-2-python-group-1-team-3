@@ -57,8 +57,8 @@ class Transportador(Persona):
     # @param pago Monto del salario a pagar
 
     def recibirPagos(self, total):
-        self.fabrica.getCuentaBancaria().descontarFondos(total)
-        self.getCuentaBancaria().anadirFondos(total)
+        self.fabrica.getCuentaBancaria().disminuirSaldo(total)
+        self.getCuentaBancaria().incrementarSaldo(total)
 
 
     # Devuelve una representación en cadena del objeto Transportador.
