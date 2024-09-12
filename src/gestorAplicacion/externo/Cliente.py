@@ -8,8 +8,9 @@
 #          - Santiago Ochoa Quintero
 
 import pickle
+from gestorAplicacion.empresa.Moda import Moda
 
-class Cliente:
+class Cliente(Moda):
     #La clase 'Cliente' representa un cliente de la empresa.
     #  
     # Contiene información sobre el nombre, dirección, cuenta bancaria y los productos adquiridos por el cliente.
