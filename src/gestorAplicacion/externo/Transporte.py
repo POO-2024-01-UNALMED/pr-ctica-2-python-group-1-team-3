@@ -53,7 +53,7 @@ class Transporte:
         return textoTipoTransporte
 
     def __str__(self):
-        return f"Transporte: {self.tipo}, Conductor: {self.transportador}, Capacidad: {self.capacidad}, Costo: {self.costo}"
+        return f"Transporte: {self.tipo}, Transportador: {self.transportador}, Capacidad: {self.capacidad}, Costo: {self.costo}"
 
     @classmethod
     def mostrar_transportes(cls):

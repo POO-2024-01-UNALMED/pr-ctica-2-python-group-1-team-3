@@ -10,6 +10,7 @@ import pickle
 
 from UiMain.excepciones.Categoria1.InicioMayorQueFin import InicioMayorQueFin
 from UiMain.excepciones.Categoria1.FechasFueraDeRango import FechasFueraDeRango
+from UiMain.excepciones.Categoria1.NoHayFechas import NoHayFechas
 
 class Factura:
     # La clase 'Factura' representa una factura de compra dentro del supermercado.
@@ -213,7 +214,11 @@ class Factura:
         
         :return: La fecha mínima en la lista de fechas.
         """
-        return min(Factura.listaFechas())
+        fechas = Factura.listaFechas()
+        if not fechas:
+            raise NoHayFechas()
+        return min(fechas)
+
 
 
     @staticmethod
@@ -223,7 +228,10 @@ class Factura:
         
         :return: La fecha máxima en la lista de fechas.
         """
-        return max(Factura.listaFechas())
+        fechas = Factura.listaFechas()
+        if not fechas:
+            raise NoHayFechas()
+        return max(fechas)
 
 
     def seleccionarProductoDevolver(self, opcion):
