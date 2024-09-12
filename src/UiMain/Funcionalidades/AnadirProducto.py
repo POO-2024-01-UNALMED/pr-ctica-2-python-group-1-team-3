@@ -8,6 +8,7 @@ from UiMain.excepciones.Categoria1.ProductoYaExistente import ProductoYaExistent
 
 from UiMain.Ventanas.FieldFrame import FieldFrame
 
+from baseDatos.Deserializador import Deserializador
 from gestorAplicacion.empresa.Fabrica import Fabrica
 from gestorAplicacion.empresa.Producto import Producto
 

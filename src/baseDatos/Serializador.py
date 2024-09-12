@@ -50,7 +50,7 @@ class Serializador:
         pickleFileVendedor.close()
 
         #Transportadores
-        pickleFileTransportador = open(path+"/baseDatos/temp/pickleFileConductor.pkl","wb")
+        pickleFileTransportador = open(path+"/baseDatos/temp/pickleFileTransportador.pkl","wb")
         pickle.dump(Transportador.getListaTransportadores(),pickleFileTransportador)
         pickleFileTransportador.close()
 

@@ -14,7 +14,10 @@ AUTORES: - Sebastian Estrada Villa
 
 from enum import Enum
 
+from gestorAplicacion.empleados import Transportador
 from gestorAplicacion.externo.TipoTransporte import TipoTransporte
+
+#from gestorAplicacion.externo.TipoTransporte import TipoTransporte
 
 class Transporte:
     """
@@ -29,108 +32,71 @@ class Transporte:
         - Envio pedidos
         - Proveer tiendas
     """
-    
-    # ATRIBUTOS ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
-    listaTransportes = []
 
+    lista_transportes = []
 
-    # CONSTRUCTOR ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
     def __init__(self, tipo: TipoTransporte, capacidad, costo, transportador):
-        """
-        Constructor que recibe todos los parámetros.
-        
-        @param tipo: Tipo de transporte
-        @param capacidad: Capacidad de carga del transporte
-        @param costo: Costo del transporte
-        @param transportador: Transportador asignado al transporte
-        """
-        #self.tipoTransporte = tipo
-        self.capacidad = capacidad 
+        self.tipo = tipo
+        self.capacidad = capacidad
         self.costo = costo
         self.transportador = transportador
-        self.listaTransportes = []
         self.tienda = None
-        self.listaDeProductos = []
-        self.tipo: TipoTransporte = tipo
-        self.listaTransportes.append(self)
+        self.lista_de_productos = []
+        Transporte.lista_transportes.append(self)
 
-
-    # MÉETODOS -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    def suministrarProducto(self, tienda, listaDeProductos):
-        """
-        Lleva los productos al transporte seleccionado y asigna la tienda a la que se enviarán.
-        
-        @param tienda: Tienda a la que se enviarán los productos
-        @param listaDeProductos: Lista de productos a transportar
-        
-        Funcionalidades en las que se usa: Proveer tiendas
-        """
+    def suministrarProducto(self, tienda, lista_de_productos):
         self.tienda = tienda
-        self.listaDeProductos = listaDeProductos
-
-
+        self.lista_de_productos = lista_de_productos
+    
     def tipoTransporte(self, tipoTransporte):
-        """
-        Genera una cadena de texto con el nombre, precio y capacidad de un tipo de transporte.
-        
-        @param tipoTransporte: Tipo de transporte a mostrar
-        @return: Una cadena de texto con la información del tipo de transporte
-        """
-        textoTipoTransporte = f"Tipo de transporte: {tipoTransporte.value}, Precio: {tipoTransporte.precioEnvio_COP()}, Capacidad máxima: {tipoTransporte.capacidad_KG()}"
+        textoTipoTransporte = f"Tipo de transporte: {tipoTransporte.value}, Precio: {tipoTransporte.precio_envio}, Capacidad máxima: {tipoTransporte.capacidad_max}"
         return textoTipoTransporte
 
     def __str__(self):
-        return self.tipo.name
-
-
-    # GETTERS Y SETTERS -----------------------------------------------------------------------------------------------------------------------------------------------------------
+        return f"Transporte: {self.tipo}, Conductor: {self.transportador}, Capacidad: {self.capacidad}, Costo: {self.costo}"
 
     @classmethod
-    def getListaTransportes(cls):
-        return cls.listaTransportes
+    def mostrar_transportes(cls):
+        return [str(transporte) for transporte in cls.lista_transportes]
 
-    @classmethod
-    def setListaTransportes(cls, listaTransportes):
-        cls.listaTransportes = listaTransportes
+    
 
-    def getCapacidad(self):
-        return self.capacidad
-
-    def setCapacidad(self, capacidad):
-        self.capacidad = capacidad
-
-    def getCosto(self):
-        return self.costo
-
-    def setCosto(self, costo):
-        self.costo = costo
+    # Getters
+    def getTipo(self):
+        return self.tipo
 
     def getTransportador(self):
         return self.transportador
 
+    def getCapacidad(self):
+        return self.capacidad
+
+    def getCosto(self):
+        return self.costo
+
+    def getListaDeProductos(self):
+        return self.lista_de_productos
+
+    # Setters
+    def setTipo(self, tipo):
+        self.tipo = tipo
+
     def setTransportador(self, transportador):
         self.transportador = transportador
 
-    def getTienda(self):
-        return self.tienda
+    def setCapacidad(self, capacidad):
+        self.capacidad = capacidad
 
-    def setTienda(self, tienda):
-        self.tienda = tienda
+    def setCosto(self, costo):
+        self.costo = costo
 
-    def getListaDeProductos(self):
-        return self.listaDeProductos
-
-    def setListaDeProductos(self, listaDeProductos):
-        self.listaDeProductos = listaDeProductos
+    def setListaDeProductos(self, lista_de_productos):
+        self.lista_de_productos = lista_de_productos
     
-    def getNombre(self):
-        return self.tipo.name
+    @classmethod
+    def setListaTransportes(cls, lista_transportes):
+        cls.lista_transportes = lista_transportes
 
-    def getTipoTransporte(self):
-        return self.tipo
-
-    def setTipoTransporte(self, tipo):
-        self.tipo = tipo
+    @classmethod
+    def getListaTransportes(cls):
+        return cls.lista_transportes

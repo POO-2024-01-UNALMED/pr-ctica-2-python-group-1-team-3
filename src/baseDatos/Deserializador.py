@@ -20,10 +20,14 @@ class Deserializador:
     def deserializar(cls):
 
         #Fábrica
-        pickleFileFabrica = open(path+"/baseDatos/temp/pickleFileFabrica.pkl","rb")
-        pcsFabrica = pickle.load(pickleFileFabrica)
-        Fabrica.setListaFabricas(pcsFabrica)
-        pickleFileFabrica.close()
+        try:
+            pickleFileFabrica = open(path+"/baseDatos/temp/pickleFileFabrica.pkl", "rb")
+            pcsFabrica = pickle.load(pickleFileFabrica)
+            Fabrica.setListaFabricas(pcsFabrica)
+            pickleFileFabrica.close()
+        except (FileNotFoundError, EOFError) as e:
+            print(f"Error al deserializar la fábrica: {e}")
+
 
         #Tiendas
         pickleFileTienda = open(path+"/baseDatos/temp/pickleFileTienda.pkl","rb")
@@ -56,7 +60,7 @@ class Deserializador:
         pickleFileVendedor.close()
 
         #Transportadores
-        pickleFileTransportador = open(path+"/baseDatos/temp/pickleFileConductor.pkl","rb")
+        pickleFileTransportador = open(path+"/baseDatos/temp/pickleFileTransportador.pkl","rb")
         pcsTransportador = pickle.load(pickleFileTransportador)
         Transportador.setListaTransportadores(pcsTransportador)
         pickleFileTransportador.close()
@@ -71,4 +75,4 @@ class Deserializador:
         pickleFileTransporte = open(path+"/baseDatos/temp/pickleFileTransporte.pkl","rb")
         pcsTransporte = pickle.load(pickleFileTransporte)
         Transporte.setListaTransportes(pcsTransporte)
-        pickleFileTransporte.close()    
+        pickleFileTransporte.close()

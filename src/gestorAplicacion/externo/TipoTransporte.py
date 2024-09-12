@@ -25,66 +25,24 @@ class TipoTransporte(Enum):
     """
     
     # CONSTANTES ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CAMINANDO = ("Caminando", 1000, 5)
+    BICICLETA = ("Bicicleta", 2000, 8)
+    MOTO = ("Moto", 5000, 10)
+    CARRO = ("Carro", 10000, 30)
+    CAMION = ("Camión", 50000, 100)
+    AVION = ("Avión", 500000, 1000)
 
-    # NOMBRE = (precioEnvio_COP, capacidad_KG, "Nombre")
-    CAMINANDO = (1000, 5, "Caminando")
-    BICICLETA = (2000, 8, "Bicicleta")
-    MOTO = (5000, 10, "Moto")
-    CARRO = (10000, 30, "Carro")
-    CAMION = (50000, 100, "Camion")
-    AVION = (500000, 1000, "Avion")
-
-
-    # CONSTRUCTOR ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    def __init__(self, precioEnvio_COP, capacidad_KG, nombre):
-        self.precioEnvio_COP = precioEnvio_COP
-        self.capacidad_KG = capacidad_KG
+    def __init__(self, nombre, precio_envio, capacidad):
         self.nombre = nombre
+        self.precio_envio = precio_envio
+        self.capacidad = capacidad
 
-
-    # MÉTODOS ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
     @classmethod
-    def transporteSegunCarga(cls, PesoTotalProductos):
-        """
-        Verifica qué tipos de transporte son aptos según el peso de los productos a enviar.
-        
-        @param PesoTotalProductos: Peso total de los productos a enviar
-        @return: Una lista de tipos de transporte que pueden manejar el peso total de los productos
-        
-        Funcionalidades en las que se usa: Envio pedidos
-        """
-        transportesPosibles = []
-        try:
-            for tipoTransporte in TipoTransporte:
-                CargaTipoTrans = 0
-                CargaTipoTrans = tipoTransporte.value[2]
-                if CargaTipoTrans >= PesoTotalProductos:
-                    transportesPosibles.append(tipoTransporte)
-        except TypeError:
-            pass
-        return transportesPosibles
-    
+    def transporteSegunCarga(cls, peso_total_productos):
+        return [tipo for tipo in cls if tipo.capacidad >= peso_total_productos]
 
-    @staticmethod
-    def mostrarTransporteSegunCarga():
-        """
-        Muestra los tipos de transporte disponibles según la carga.
-        
-        @param transportesPosibles: Lista de tipos de transporte posibles
-        @return: Una cadena de texto con información sobre los tipos de transporte disponibles
-        
-        Funcionalidades en las que se usa: Envio pedidos
-        """
-
-        cadenaTexto = ""
-        
-        for tipoTransporte in TipoTransporte:
-            cadenaTexto+=(tipoTransporte.value[0])
-            cadenaTexto+=("\n")
-        return cadenaTexto
-    
+    def __str__(self):
+        return f"Tipo: {self.nombre}, Precio: {self.precio_envio}, Capacidad: {self.capacidad}"
 
     @staticmethod
     def mostrarTransportes():
@@ -94,44 +52,33 @@ class TipoTransporte(Enum):
             cadenaTexto+=(tipoTransporte.value[0])
             cadenaTexto+=("\n")
         return cadenaTexto
-    
-    def getPrecioOriginalTransporte(self):
-        return self.precioEnvio_COP
 
     @staticmethod
-    def enviarGratis(transporteSeleccionado):
-        """
-        Cambia el valor del envío a 0.
+    def mostrarTransportesSegunCarga():
+        cadenaTexto = ""
         
-        @param transporteSeleccionado: Transporte al que se le cambiará el precio del envío
-        @return: El objeto transporte con el precio del envío cambiado a 0
-        
-        Funcionalidades en las que se usa: Envio pedidos
-        """
-        transporteSeleccionado.tipo.precioEnvio_COP = 0
+        for tipoTransporte in TipoTransporte:
+            cadenaTexto+=(tipoTransporte.value[0])
+            cadenaTexto+=("\n")
+        return cadenaTexto
+    
+    @classmethod
+    def enviarGratis(cls, transporteSeleccionado):
+        transporteSeleccionado.tipo.precio_envio = 0
         return transporteSeleccionado
 
+    @classmethod
+    def recordarPrecioTransporte(cls):
+        cls.precioOriginalTransporte = cls.tipo.precio_envio
+   
 
-    def recordarPrecioTransporte(self):
-        """
-        Guarda el valor del precio de envío en la variable precioTransporte.
-        
-        Funcionalidades en las que se usa: Envio pedidos
-        """
-        self.precioOriginalTransporte = self.precioEnvio_COP
+    @classmethod
+    def reestablecerPrecioTrans(cls):
+        cls.tipo.precio_envio = cls.precioOriginalTransporte
 
-    def reestablecerPrecioTransporte(self):
-        """
-        Guarda en precioEnvio el valor que está en precioTransporte.
-        
-        Funcionalidades en las que se usa: Envio pedidos
-        """
-        self.precioEnvio_COP = 0
 
-    def __str__(self):
-        """
-        Genera una representación en cadena del tipo de transporte.
-        
-        @return: Una cadena de texto con el nombre del tipo de transporte
-        """
-        return self.nombre
+    def getPrecioOriginalTransporte(self):
+        return self.capacidad
+
+    def getCapacidad(self):
+        return self.capacidad

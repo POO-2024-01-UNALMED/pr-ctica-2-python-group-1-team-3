@@ -3,15 +3,24 @@
 import sys
 import os
 
+from gestorAplicacion.externo import Cliente
+from gestorAplicacion.empresa import Producto
+
 # Asegura que el sistema pueda encontrar los módulos del proyecto
 sys.path.append(os.path.dirname(__file__))
 
 # Importamos el archivo main de UiMain.Ventanas
 from UiMain.Ventanas.VentanaPrincipal import VentanaPrincipal
-from UiMain.Ventanas.main import ventanaMain
+#from UiMain.Ventanas.main import ventanaMain
+from baseDatos.Deserializador import Deserializador
+from gestorAplicacion.empresa.Fabrica import Fabrica
 
 if __name__ == "__main__":
     # Ejecutamos la lógica de main.py
-    #ventana = VentanaPrincipal()
-    #ventana.mainloop()
-    ventanaMain.mainloop()
+
+    # Deserialización de los datos necesarios
+    Deserializador.deserializar()
+    #print(Producto.getListaProductos())  # Assuming the method is defined in the Producto class
+    ventana = VentanaPrincipal()
+    ventana.mainloop()
+    #ventanaMain.mainloop()

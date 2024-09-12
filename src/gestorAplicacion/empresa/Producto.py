@@ -20,7 +20,7 @@ class Producto:
     # ATRIBUTOS ---------------------------------------------------------------
     
     _numProductos = 0
-    _listaProductos = []
+    listaProductos = []
 
 
     # CONSTRUCTORES ---------------------------------------------------------------
@@ -48,7 +48,7 @@ class Producto:
         self.costoProduccion = costoProduccion
         self.categoria = categoria.lower()
         Producto._numProductos += 1
-        Producto._listaProductos.append(self)
+        Producto.listaProductos.append(self)
         self.devuelto = False
 
     
@@ -83,11 +83,11 @@ class Producto:
 
     @classmethod
     def getListaProductos(cls):
-        return cls._listaProductos
+        return cls.listaProductos
 
     @classmethod
     def setListaProductos(cls, listaProductos):
-        cls._listaProductos = listaProductos
+        cls.listaProductos = listaProductos
 
     def getNombre(self):
         return self.nombre

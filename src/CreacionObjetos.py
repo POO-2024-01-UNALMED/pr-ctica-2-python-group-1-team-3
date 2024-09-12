@@ -1,4 +1,4 @@
-"""
+
 
 from gestorAplicacion.externo.CuentaBancaria import CuentaBancaria
 from gestorAplicacion.empleados.Operario import Operario
@@ -161,8 +161,12 @@ operario1.setFabrica(fabrica)
 
 
 # Creación de transportes
-transporte1 = Transporte(TipoTransporte.CARRO, 100, 1000, transportador1)
-transporteAbastecer = Transporte(TipoTransporte.CAMION, TipoTransporte.CAMION.getPrecioOriginalTransporte(), TipoTransporte.CAMION.capacidad_KG, transportador1)
+# Creación de transportes
+transporte1 = Transporte(TipoTransporte.CARRO, TipoTransporte.CARRO.getPrecioOriginalTransporte(), TipoTransporte.CARRO.capacidad, transportador1)
+transporteAbastecer = Transporte(TipoTransporte.CAMION, TipoTransporte.CAMION.getPrecioOriginalTransporte(), TipoTransporte.CAMION.capacidad, transportador1)
+
+# Asignar lista de transportes
+Transporte.setListaTransportes([transporte1, transporteAbastecer])
 
 transportador1.setTransporte(transporteAbastecer)
 transportador1.setTransporte(transporte1)
@@ -171,4 +175,3 @@ transportador1.setTransporte(transporte1)
 #Serializar 
 Serializador.serializar()
 
-"""
