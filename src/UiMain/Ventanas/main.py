@@ -20,7 +20,27 @@ from tkinter import ttk
 
 from setuptools.command.setopt import edit_config
 
-from src.gestorAplicacion.externo.TipoTransporte import TipoTransporte
+#from src.gestorAplicacion.externo.TipoTransporte import TipoTransporte
+
+
+from pathlib import Path
+
+directorio_script = Path(__file__).parent
+
+ruta_tienda = directorio_script / "imagenes" / "tienda.png"
+ruta_carrito = directorio_script / "imagenes" / "carrito.png"
+ruta_precio = directorio_script / "imagenes" / "precio.png"
+ruta_cajera = directorio_script / "imagenes" / "cajera.png"
+ruta_productos = directorio_script / "imagenes" / "productos.png"
+ruta_sebastian1 = directorio_script / "imagenes" / "sebastian1.png"
+ruta_sebastian2 = directorio_script / "imagenes" / "sebastian2.png"
+ruta_sebastian3 = directorio_script / "imagenes" / "sebastian3.png"
+ruta_sebastian4 = directorio_script / "imagenes" / "sebastian4.png"
+ruta_valentina1 = directorio_script / "imagenes" / "valentina1.png"
+ruta_valentina2 = directorio_script / "imagenes" / "valentina2.png"
+ruta_valentina3 = directorio_script / "imagenes" / "valentina3.png"
+ruta_valentina4 = directorio_script / "imagenes" / "valentina4.png"
+
 
 #Creacion ventana
 ventanaMain = tk.Tk()
@@ -37,19 +57,19 @@ def mensaje(Evento):
         hojaDeVida.config(text="Sebastian Estrada Villa")
         hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta el deporte, la música  \ny los acertijos.")
         global imagen1v
-        imagen1v = tk.PhotoImage(file="../imagenes/sebastian1.png")
+        imagen1v = tk.PhotoImage(file=ruta_sebastian1)
         labelImagen1.config(image=imagen1v)
 
         global imagen2v
-        imagen2v = tk.PhotoImage(file="../imagenes/sebastian2.png")
+        imagen2v = tk.PhotoImage(file=ruta_sebastian2)
         labelImagen2.config(image=imagen2v)
 
         global imagen3v
-        imagen3v = tk.PhotoImage(file="../imagenes/sebastian3.png")
+        imagen3v = tk.PhotoImage(file=ruta_sebastian3)
         labelImagen3.config(image=imagen3v)
 
         global imagen4v
-        imagen4v = tk.PhotoImage(file="../imagenes/sebastian4.png")
+        imagen4v = tk.PhotoImage(file=ruta_sebastian4)
         labelImagen4.config(image=imagen4v)
 
 
@@ -62,19 +82,19 @@ def mensaje(Evento):
         hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta la música, bailar y \naprender cosas nuevas ")
 
         global imagen1s
-        imagen1s = tk.PhotoImage(file="../imagenes/valentina1.png")
+        imagen1s = tk.PhotoImage(file=ruta_valentina1)
         labelImagen1.config(image=imagen1s)
 
         global imagen2s
-        imagen2s = tk.PhotoImage(file="../imagenes/valentina2.png")
+        imagen2s = tk.PhotoImage(file=ruta_valentina2)
         labelImagen2.config(image=imagen2s)
 
         global imagen3s
-        imagen3s = tk.PhotoImage(file="../imagenes/valentina3.png")
+        imagen3s = tk.PhotoImage(file=ruta_valentina3)
         labelImagen3.config(image=imagen3s)
 
         global imagen4s
-        imagen4s = tk.PhotoImage(file="../imagenes/valentina2.png")
+        imagen4s = tk.PhotoImage(file=ruta_valentina4)
         labelImagen4.config(image=imagen4s)
 
 
@@ -92,11 +112,11 @@ def descripcion_proyecto():
 
 
 rutasImagenesSistema = [
-    "../imagenes/tienda.png",
-    "../imagenes/precio.png",
-    "../imagenes/cajera.png",
-    "../imagenes/productos.png",
-    "../imagenes/carrito.png",
+    ruta_tienda,
+    ruta_carrito,
+    ruta_productos,
+    ruta_cajera,
+    ruta_precio,
 ]
 
 image_index = 0
@@ -127,8 +147,8 @@ subFrame1_2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
 siguienteVentana = tk.Button(subFrame1_2, text="Nueva ventana", command=nueva_ventana)
 siguienteVentana.place(relx=0.05, rely=0.7, relheight=0.15, relwidth=0.9)
 
-imagenSistema = tk.PhotoImage(file="../imagenes/tienda.png")
-labelImagenSistema = tk.Label(subFrame1_2, image=imagenSistema, bg="white")
+imagenSis = tk.PhotoImage(file=ruta_carrito)
+labelImagenSistema = tk.Label(subFrame1_2, image=imagenSis, bg="white")
 labelImagenSistema.place(relx=0.1, rely=0.05, relheight=0.6, relwidth=0.8)
 labelImagenSistema.bind("<Leave>", cambiarImagen)
 
@@ -158,19 +178,19 @@ hojaDeVida.bind("<Button-1>", mensaje)
 subFrame2_2 = tk.Frame(frame2, bg="white")
 subFrame2_2.place(relx=0.125, rely=0.35, relheight=0.40, relwidth=0.75)
 
-imagen1 = tk.PhotoImage(file="../imagenes/valentina1.png")
+imagen1 = tk.PhotoImage(file=ruta_valentina1)
 labelImagen1 = tk.Label(subFrame2_2, image=imagen1, width=150, height=150)
 labelImagen1.grid(row=0, column=0, padx=1, pady=1)
 
-imagen2 = tk.PhotoImage(file="../imagenes/valentina2.png")
+imagen2 = tk.PhotoImage(file=ruta_valentina2)
 labelImagen2 = tk.Label(subFrame2_2, image=imagen2, width=150, height=150)
 labelImagen2.grid(row=0, column=1, padx=1, pady=1)
 
-imagen3 = tk.PhotoImage(file="../imagenes/valentina3.png")
+imagen3 = tk.PhotoImage(file=ruta_valentina3)
 labelImagen3 = tk.Label(subFrame2_2, image=imagen3, width=150, height=150)
 labelImagen3.grid(row=1, column=0, padx=1, pady=1)
 
-imagen4 = tk.PhotoImage(file="../imagenes/valentina4.png")
+imagen4 = tk.PhotoImage(file=ruta_sebastian4)
 labelImagen4 = tk.Label(subFrame2_2, image=imagen4, width=150, height=150)
 labelImagen4.grid(row=1, column=1, padx=1, pady=1)
 
@@ -180,8 +200,7 @@ ventanaMain.config(menu=menubar)
 
 file_menu = Menu(menubar, tearoff=0)
 file_menu.add_command(label="Salir", command=ventanaMain.quit)
-file_menu.add_command(label="Descripcion del Proyecto",
-                      command=descripcion_proyecto)
+file_menu.add_command(label="Descripcion del Proyecto",command=descripcion_proyecto)
 menubar.add_cascade(
     label="Menu",
     menu=file_menu
