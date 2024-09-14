@@ -15,8 +15,8 @@ from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
 
-
-import VentanaPrincipal
+#
+# import VentanaPrincipal
 
 
 from setuptools.command.setopt import edit_config
@@ -135,7 +135,7 @@ def cambiarImagen(Event):
 frame1 = tk.Frame(ventanaMain, bg="white", borderwidth=2, relief="sunken")
 frame1.place(relx=0, rely=0, relwidth=0.5, relheight=1)
 
-subFrame1_1 = tk.Frame(frame1, bg="white")
+subFrame1_1 = tk.Frame(frame1, bg="white", borderwidth=2, relief="sunken")
 subFrame1_1.place(relx=0.05, rely=0.05, relheight=0.20, relwidth=0.9)
 
 saludoBienvenida = tk.Label(subFrame1_1, font=("Helvetica", 15), text="Bienvenido a Delicia Fresca", bg="white", borderwidth=2, relief="sunken")
@@ -143,14 +143,14 @@ saludoBienvenida.place(relx=0.15, rely=0.4)
 
 #Subframe 1 Frame parte derecha Boton para avanzar a la siguiente ventana
 
-subFrame1_2 = tk.Frame(frame1, bg="white")
+subFrame1_2 = tk.Frame(frame1, bg="white", borderwidth=2, relief="sunken")
 subFrame1_2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
 
 siguienteVentana = tk.Button(subFrame1_2, text="Nueva ventana", command=nueva_ventana)
 siguienteVentana.place(relx=0.05, rely=0.7, relheight=0.15, relwidth=0.9)
 
 imagenSis = tk.PhotoImage(file=ruta_carrito)
-labelImagenSistema = tk.Label(subFrame1_2, image=imagenSis, bg="white")
+labelImagenSistema = tk.Label(subFrame1_2, image=imagenSis, bg="white", borderwidth=2, relief="sunken")
 labelImagenSistema.place(relx=0.1, rely=0.05, relheight=0.6, relwidth=0.8)
 labelImagenSistema.bind("<Leave>", cambiarImagen)
 
@@ -160,7 +160,7 @@ labelImagenSistema.bind("<Leave>", cambiarImagen)
 frame2 = tk.Frame(ventanaMain, bg="white", borderwidth=2, relief="sunken")
 frame2.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
 
-subFrame2_1 = tk.Frame(frame2, bg="white")
+subFrame2_1 = tk.Frame(frame2, bg="white", borderwidth=2, relief="sunken")
 subFrame2_1.place(relx=0.05, rely=0.05, relheight=0.25, relwidth=0.9)
 
 
@@ -177,7 +177,7 @@ hojaDeVida.bind("<Button-1>", mensaje)
 
 
 
-subFrame2_2 = tk.Frame(frame2, bg="white")
+subFrame2_2 = tk.Frame(frame2, bg="white", borderwidth=2, relief="sunken")
 subFrame2_2.place(relx=0.125, rely=0.35, relheight=0.40, relwidth=0.8)
 
 imagen1 = tk.PhotoImage(file=ruta_valentina1)
@@ -192,7 +192,7 @@ imagen3 = tk.PhotoImage(file=ruta_valentina3)
 labelImagen3 = tk.Label(subFrame2_2, image=imagen3, width=150, height=150, borderwidth=2, relief="solid")
 labelImagen3.grid(row=1, column=0, padx=1, pady=1)
 
-imagen4 = tk.PhotoImage(file=ruta_sebastian4)
+imagen4 = tk.PhotoImage(file=ruta_valentina4)
 labelImagen4 = tk.Label(subFrame2_2, image=imagen4, width=150, height=150, borderwidth=2, relief="solid")
 labelImagen4.grid(row=1, column=1, padx=1, pady=1)
 
@@ -204,7 +204,7 @@ file_menu = Menu(menubar, tearoff=0)
 file_menu.add_command(label="Salir", command=ventanaMain.quit)
 file_menu.add_command(label="Descripcion del Proyecto",command=descripcion_proyecto)
 menubar.add_cascade(
-    label="Menu",
+    label="Inicio",
     menu=file_menu
 )
 
