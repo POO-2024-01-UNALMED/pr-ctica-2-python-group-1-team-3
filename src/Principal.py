@@ -14,7 +14,7 @@ from UiMain.Ventanas.VentanaPrincipal import VentanaPrincipal
 #from UiMain.Ventanas.main import ventanaMain
 from baseDatos.Deserializador import Deserializador
 from gestorAplicacion.empresa.Fabrica import Fabrica
-from UiMain.Ventanas import main
+#from UiMain.Ventanas import main
 
 if __name__ == "__main__":
     # Ejecutamos la lógica de main.py

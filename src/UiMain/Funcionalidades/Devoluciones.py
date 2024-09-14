@@ -41,11 +41,11 @@ class Devoluciones(Frame):
         Cabecera.grid(row=0, column=1, padx=5, pady=5, sticky="nsew")
 
         # Título principal
-        tituloCabecera = tk.Label(Cabecera, text="Gestionar Devoluciones", font=("Georgia", 18, "bold"), bg="#f2a6c2", relief="raised", border=4)
+        tituloCabecera = tk.Label(Cabecera, text="Devoluciones", font=("Georgia", 18, "bold"), bg="#f2a6c2", relief="raised", border=4)
         tituloCabecera.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
         # Descripción
-        variableD = """En esta sección podrá realizar devoluciones de productos.\nSeleccione el cliente y el producto a devolver."""
+        variableD = """En esta sección podrá realizar devoluciones de productos.\nPara esto, seleccione el cliente y el producto a devolver."""
         descripcionCabecera = tk.Label(Cabecera, text=variableD, font=("Georgia", 12), bg="#fbcfe0", border=2, relief="sunken")
         descripcionCabecera.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
@@ -61,7 +61,7 @@ class Devoluciones(Frame):
         Productos.grid_remove()  # Oculta el contenedor de productos hasta que se seleccione una factura
 
         # Texto descriptivo de las facturas
-        textoFactura = "Seleccione el cliente que corresponde a la factura de la que desea hacer la devolución"
+        textoFactura = "Seleccione el cliente al que corresponde a la factura de la que desea hacer la devolución"
         descripcionFactura = tk.Label(Facturas, text=textoFactura, font=("Georgia", 12, "bold"), border=1, relief="sunken")
         descripcionFactura.grid(row=0, padx=10, pady=10, sticky="nsew")
 
