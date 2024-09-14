@@ -55,10 +55,10 @@ class Devoluciones(Frame):
         Facturas.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
         # Contenedor de Productos (inicialmente oculto)
-        Productos = tk.Frame(self, bg="#fbcfe0", relief="raised", border=2)
-        Productos.columnconfigure(0, weight=1)
-        Productos.grid(row=2, column=1, padx=10, pady=10, sticky="nsew")
-        Productos.grid_remove()  # Oculta el contenedor de productos hasta que se seleccione una factura
+        self.Productos = tk.Frame(self, bg="#fbcfe0", relief="raised", border=2)
+        self.Productos.columnconfigure(0, weight=1)
+        self.Productos.grid(row=2, column=1, padx=10, pady=10, sticky="nsew")
+        self.Productos.grid_remove()  # Oculta el contenedor de productos hasta que se seleccione una factura
 
         # Texto descriptivo de las facturas
         textoFactura = "Seleccione el cliente al que corresponde a la factura de la que desea hacer la devolución"
@@ -72,30 +72,30 @@ class Devoluciones(Frame):
             cliente = factura.getCliente()
             if cliente not in Devoluciones.listaFacturas:
                 Devoluciones.listaFacturas.append(cliente)
-        desplegableFactura = ttk.Combobox(Facturas, values=Devoluciones.listaFacturas, textvariable=seleccionarFactura, state='readonly', width=30)
-        desplegableFactura.grid(row=1, padx=10, pady=10, sticky="nsew")
-        desplegableFactura.bind("<<ComboboxSelected>>", self.opcionFactura)  # Llama a la función opcionFactura cuando se selecciona una opción
+        self.desplegableFactura = ttk.Combobox(Facturas, values=Devoluciones.listaFacturas, textvariable=seleccionarFactura, state='readonly', width=30)
+        self.desplegableFactura.grid(row=1, padx=10, pady=10, sticky="nsew")
+        self.desplegableFactura.bind("<<ComboboxSelected>>", self.opcionFactura)  # Llama a la función opcionFactura cuando se selecciona una opción
 
         # --- Texto descriptivo de los productos
-        descripcionProducto = tk.Label(Productos, text="Seleccione el producto que desea devolver", font=("Georgia", 12, "bold"), border=1, relief="sunken")
+        descripcionProducto = tk.Label(self.Productos, text="Seleccione el producto que desea devolver", font=("Georgia", 12, "bold"), border=1, relief="sunken")
         descripcionProducto.grid(row=0, padx=10, pady=10, sticky="nsew")
 
         # --- Desplegable para seleccionar producto
         seleccionarProducto = tk.StringVar(value="Seleccionar producto")
-        desplegableProducto = ttk.Combobox(Productos, values=Devoluciones.listaProductos, textvariable=seleccionarProducto, state='readonly', width=30)
-        desplegableProducto.grid(row=1, padx=10, pady=10, sticky="nsew")
-        desplegableProducto.bind("<<ComboboxSelected>>", self.opcionProducto)  # Llama a la función opcionProducto cuando se selecciona una opción
+        self.desplegableProducto = ttk.Combobox(self.Productos, values=Devoluciones.listaProductos, textvariable=seleccionarProducto, state='readonly', width=30)
+        self.desplegableProducto.grid(row=1, padx=10, pady=10, sticky="nsew")
+        self.desplegableProducto.bind("<<ComboboxSelected>>", self.opcionProducto)  # Llama a la función opcionProducto cuando se selecciona una opción
 
         # ---- Botón para devolver producto ----
-        boton = tk.Button(self, text="Realizar devolución", width=20, height=4, bg="#e895b0", font=("Georgia", 14, "bold"), fg="#ffffff", border=3, relief="raised", command=self.devolverProducto)
-        boton.grid(row=3, column=1)
-        boton.grid_remove()  # Oculta el botón hasta que se seleccione un producto
+        self.boton = tk.Button(self, text="Realizar devolución", width=20, height=4, bg="#e895b0", font=("Georgia", 14, "bold"), fg="#ffffff", border=3, relief="raised", command=self.devolverProducto)
+        self.boton.grid(row=3, column=1)
+        self.boton.grid_remove()  # Oculta el botón hasta que se seleccione un producto
 
     def opcionFactura(self, event):
         """
         Lógica para mostrar los productos disponibles para devolución, según el cliente seleccionado.
         """
-        Devoluciones.clienteElegido = desplegableFactura.get()
+        Devoluciones.clienteElegido = self.desplegableFactura.get()
 
         # Encuentra el cliente asociado a la factura seleccionada
         for factura in Factura.getListaFacturas():
@@ -110,21 +110,21 @@ class Devoluciones(Frame):
             if not producto.isDevuelto():
                 Devoluciones.listaProductos.append(producto.getNombre())
 
-        Productos.grid()  # Muestra el contenedor de productos
-        desplegableProducto['value'] = Devoluciones.listaProductos  # Actualiza las opciones del desplegable de productos
+        self.Productos.grid()  # Muestra el contenedor de productos
+        self.desplegableProducto['value'] = Devoluciones.listaProductos  # Actualiza las opciones del desplegable de productos
         Devoluciones.listaProductos = []  # Reinicia la lista de productos para futuras selecciones
 
     def opcionProducto(self, event):
         """
         Habilita el botón de devolución una vez que se ha seleccionado un producto.
         """
-        boton.grid()  # Muestra el botón de devolución
+        self.boton.grid()  # Muestra el botón de devolución
 
     def devolverProducto(self):
         """
         Realiza el proceso de devolución del producto seleccionado, devolviendo el dinero y actualizando los estados.
         """
-        Devoluciones.productoElegido = desplegableProducto.get()
+        Devoluciones.productoElegido = self.desplegableProducto.get()
 
         # Encuentra el producto seleccionado en la lista de productos del cliente
         for producto in Devoluciones.clienteElegido.getProductos():
@@ -144,7 +144,7 @@ class Devoluciones(Frame):
         messagebox.showinfo("¡Devolución Exitosa!", f"El producto devuelto fue:\n{Devoluciones.productoElegido.getNombre()}")
 
         # Reinicia los valores de los desplegables y oculta los contenedores
-        desplegableFactura.set('')
-        desplegableProducto.set('')
-        Productos.grid_remove()
-        boton.grid_remove()
+        self.desplegableFactura.set('')
+        self.desplegableProducto.set('')
+        self.Productos.grid_remove()
+        self.boton.grid_remove()
