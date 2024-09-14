@@ -12,7 +12,6 @@ from UiMain.excepciones.Categoria2.NombreInvalido import NombreInvalido
 from gestorAplicacion.externo.Cliente import Cliente
 from gestorAplicacion.externo.CuentaBancaria import CuentaBancaria
 from UiMain.Ventanas.FieldFrame import FieldFrame
-from baseDatos.Deserializador import Deserializador  # Deserializar los datos necesarios
 
 class AnadirCliente(Frame):
     def __init__(self, ventana):
@@ -33,7 +32,7 @@ class AnadirCliente(Frame):
         cabecera.grid(row=0, column=1, padx=10, pady=10)
 
         # Título principal
-        titulo = tk.Label(cabecera, text='Añadir cliente', font=("Georgia", 18, "bold"), bg="#f2a6c2", relief="raised", border=4)
+        titulo = tk.Label(cabecera, text="Añadir cliente", font=("Georgia", 18, "bold"), bg="#f2a6c2", relief="raised", border=4)
         titulo.pack(pady=10, fill="x")
 
         # Texto descriptivo
@@ -51,9 +50,6 @@ class AnadirCliente(Frame):
 
         # Criterios del formulario
         self.criterios = ["ID", "Nombre", "Direccion", "Cuenta Bancaria"]
-        
-        # Deserialización de los datos necesarios
-        Deserializador.deserializar()
 
         # Calcular el ID inicial del cliente basado en la longitud de la lista de clientes
         cliente_id = Cliente.getNextID()
@@ -76,8 +72,9 @@ class AnadirCliente(Frame):
         botonAgregar.grid(row=0, column=0, padx=10)
 
         # Botón para limpiar campos
-        botonLimpiar = tk.Button(botonFrame, text="Limpiar", command=self.borrar, width=10, height=2, bg="#e895b0", font=("Georgia", 13, "bold"), fg="#ffffff", border=3, relief="raised")
+        botonLimpiar = tk.Button(botonFrame, text="Borrar", command=self.borrar, width=10, height=2, bg="#e895b0", font=("Georgia", 13, "bold"), fg="#ffffff", border=3, relief="raised")
         botonLimpiar.grid(row=0, column=1, padx=10)
+
 
     def ingresarCliente(self):
         """
@@ -131,6 +128,7 @@ class AnadirCliente(Frame):
 
         except NombreInvalido as e:
             messagebox.showerror("Error", str(e))
+
 
     def borrar(self):
         """

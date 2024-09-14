@@ -32,7 +32,7 @@ class AnadirProducto(Frame):
         cabecera.grid(row=0, column=1, padx=10, pady=10)
 
         # Título principal
-        titulo = tk.Label(cabecera, text='Registrar nuevo producto', font=("Georgia", 18, "bold"), bg="#f2a6c2", relief="raised", border=4)
+        titulo = tk.Label(cabecera, text="Registrar nuevo producto para ser producido en la fábrica", font=("Georgia", 18, "bold"), bg="#f2a6c2", relief="raised", border=4)
         titulo.pack(pady=10, fill="x")
 
         # Texto descriptivo
@@ -67,12 +67,13 @@ class AnadirProducto(Frame):
         botonAgregar.grid(row=0, column=0, padx=10)
 
         # Botón para limpiar campos
-        botonLimpiar = tk.Button(botonFrame, text="Limpiar", command=self.limpiarCampos, width=10, height=2, bg="#e895b0", font=("Georgia", 13, "bold"), fg="#ffffff", border=3, relief="raised")
+        botonLimpiar = tk.Button(botonFrame, text="Borrar", command=self.limpiarCampos, width=10, height=2, bg="#e895b0", font=("Georgia", 13, "bold"), fg="#ffffff", border=3, relief="raised")
         botonLimpiar.grid(row=0, column=1, padx=10)
 
         # Instrucción sobre las categorías (Frutas y verduras, Panaderia, Salsas y mermeladas, Bebidas)
         labelCategorias = tk.Label(contenedorCampos, text="Las categorias validas son:\n- frutas y verduras\n- panaderia\n- salsas y mermeladas\n- bebidas", font=("Georgia", 12), bg="#fbcfe0", border=2, relief="sunken")
         labelCategorias.grid(row=1, column=1, padx=6)
+
 
     def agregarProducto(self):
         """
@@ -128,6 +129,7 @@ class AnadirProducto(Frame):
 
         except CategoriaNoValida as e:
             messagebox.showerror("Error", str(e))
+
 
     def limpiarCampos(self):
         """ Limpia todos los campos del formulario. """

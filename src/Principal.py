@@ -14,13 +14,15 @@ from UiMain.Ventanas.VentanaPrincipal import VentanaPrincipal
 #from UiMain.Ventanas.main import ventanaMain
 from baseDatos.Deserializador import Deserializador
 from gestorAplicacion.empresa.Fabrica import Fabrica
+from UiMain.Ventanas import main
 
 if __name__ == "__main__":
     # Ejecutamos la lógica de main.py
 
     # Deserialización de los datos necesarios
-    Deserializador.deserializar()
+    #Deserializador.deserializar()
     #print(Producto.getListaProductos())  # Assuming the method is defined in the Producto class
     ventana = VentanaPrincipal()
     ventana.mainloop()
     #ventanaMain.mainloop()
+    

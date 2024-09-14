@@ -16,11 +16,14 @@ from UiMain.Ventanas.VentanaEntrada import VentanaEntrada
 from baseDatos.Serializador import Serializador
 
 import sys
+
+from baseDatos.Deserializador import Deserializador
 sys.path.append('../')
 
 
 class VentanaPrincipal(tk.Tk):
     def __init__(self):
+        Deserializador.deserializar()
         super().__init__()
         self.configurar_ventana()
 

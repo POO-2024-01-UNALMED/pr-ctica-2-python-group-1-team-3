@@ -39,7 +39,16 @@ class TipoTransporte(Enum):
 
     @classmethod
     def transporteSegunCarga(cls, peso_total_productos):
-        return [tipo for tipo in cls if tipo.capacidad >= peso_total_productos]
+        listaTransFiltrada = []
+        try:
+            for tipoTransporte in TipoTransporte:
+                CargaTipoTrans = 0
+                CargaTipoTrans = tipoTransporte.value[2]
+                if CargaTipoTrans >= peso_total_productos:
+                    listaTransFiltrada.append(tipoTransporte)
+        except TypeError:
+            pass
+        return listaTransFiltrada
 
     def __str__(self):
         return f"Tipo: {self.nombre}, Precio: {self.precio_envio}, Capacidad: {self.capacidad}"

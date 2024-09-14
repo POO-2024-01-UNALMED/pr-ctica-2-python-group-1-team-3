@@ -169,7 +169,7 @@ hojaDeVida.place(relx=0.20, rely=0.20)
 
 hojaDeVida.bind("<Button-1>", mensaje)
 
-hojaDeVida2 = tk.Label(subFrame2_1, bg="white", text="Estudio Ingeniería de Sistemas e Informática \n\nMe gusta la música, bailar y aprender \ncosas nuevas ", font=("Arial", 12), justify="left")
+hojaDeVida2 = tk.Label(subFrame2_1, bg="white", text="Estudio Ingeniería de Sistemas e Informática \n\nMe gusta la música, bailar y aprender \ncosas nuevas ", font=("Georgia", 12), justify="left")
 hojaDeVida2.place(relx=0.10, rely=0.40)
 hojaDeVida.bind("<Button-1>", mensaje)
 
@@ -290,21 +290,21 @@ def ventana2Info():
 #     productos_lista.append(f"-- {categoria} --")  # Agregar el separador
 #     productos_lista.extend(productos_en_categoria)  # Agregar los productos
 #
-# label = tk.Label(funcionalidad1frame, text="Selecciona un producto", font=('Arial', 12))
+# label = tk.Label(funcionalidad1frame, text="Selecciona un producto", font=('Georgia', 12))
 # label.pack(pady=1, padx=0.1)
 #
 # # Crear el combobox (lista desplegable)
 # combo = ttk.Combobox(funcionalidad1frame, values=productos_lista, state="readonly")
 # combo.place(relx=0.05, rely=0.1, relheight=0.2, relwidth=0.2)
 #
-# label2 = tk.Label(funcionalidad1frame, text="Selecciona una tienda", font=('Arial', 12))
+# label2 = tk.Label(funcionalidad1frame, text="Selecciona una tienda", font=('Georgia', 12))
 # label2.pack(pady=2, padx=0.1)
 #
 # # Crear el combobox (lista desplegable)
 # combo2 = ttk.Combobox(funcionalidad1frame, values=tiendas, state="readonly")
 # combo2.place(relx=0.05, rely=0.3, relheight=0.2, relwidth=0.2)
 #
-# label3 = tk.Label(funcionalidad1frame, text="Selecciona un cliente", font=('Arial', 12))
+# label3 = tk.Label(funcionalidad1frame, text="Selecciona un cliente", font=('Georgia', 12))
 # label3.pack(pady=2, padx=0.1)
 #
 # # Crear el combobox (lista desplegable)
@@ -314,13 +314,13 @@ def ventana2Info():
 # entry = tk.Entry(funcionalidad1frame, width=50)
 # entry.pack(pady=2, padx=0.1)
 #
-# label4 = tk.Label(funcionalidad1frame, text="Selecciona un Tipo de transporte", font=('Arial', 12))
+# label4 = tk.Label(funcionalidad1frame, text="Selecciona un Tipo de transporte", font=('Georgia', 12))
 # label4.pack(pady=2, padx=0.1)
 #
 # combo4 = ttk.Combobox(funcionalidad1frame, values=TipoTransporte, state="readonly")
 # combo4.place(relx=0.05, rely=0.3, relheight=0.2, relwidth=0.2)
 #
-# label5 = tk.Label(funcionalidad1frame, text="Aplicar envio Gratis?", font=('Arial', 12))
+# label5 = tk.Label(funcionalidad1frame, text="Aplicar envio Gratis?", font=('Georgia', 12))
 # label5.pack(pady=2, padx=0.1)
 #
 # combo5 = ttk.Combobox(funcionalidad1frame, values=opciones, state="readonly")

@@ -113,18 +113,18 @@ class Factura:
 
         fechas = Factura.listaFechas(inicio, fin)
         facturas = Factura.facturasPorPeriodo(inicio, fin)
-        dictGananciasDiscretas = {}
+        dictGananciasPorDia = {}
 
         for fecha in fechas:
-            dictGananciasDiscretas[fecha] = 0.0
+            dictGananciasPorDia[fecha] = 0.0
 
-        for fecha in dictGananciasDiscretas.keys():
+        for fecha in dictGananciasPorDia.keys():
             for factura in facturas:
                 if factura.fecha == fecha:
-                    valorAnterior = dictGananciasDiscretas[fecha]
-                    dictGananciasDiscretas[fecha] = valorAnterior + factura.getTotal()
+                    valorAnterior = dictGananciasPorDia[fecha]
+                    dictGananciasPorDia[fecha] = valorAnterior + factura.getTotal()
 
-        return dictGananciasDiscretas
+        return dictGananciasPorDia
 
 
     @staticmethod
