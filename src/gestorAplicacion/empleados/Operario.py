@@ -79,10 +79,9 @@ class Operario(Persona):
     
     def __str__(self):
         return (
-            "\nNombre: " + self.getNombre() + "\n"
+            "Nombre: " + self.getNombre() + "\n"
             + "Edad: " + str(self.getEdad()) + "\n"
-            + "Identificación: " + str(self.getCedula()) + "\n"
-            + "Fabrica: " + str(self.getFabrica()) + "\n"
+            + "Identificación: " + str(self.getCedula())
         )
 
 

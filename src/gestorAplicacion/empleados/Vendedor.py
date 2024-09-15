@@ -68,10 +68,9 @@ class Vendedor(Persona):
     #         identificación y el nombre de la tienda a la que pertenece.
     
     def __str__(self):
-        return "\nNombre: " + self.getNombre() + "\n" \
+        return "Nombre: " + self.getNombre() + "\n" \
                + "Edad: " + str(self.getEdad()) + "\n" \
-               + "Cedula: " + str(self.getCedula()) + "\n" \
-               + "Tienda: " + self.getTienda().getNombre() + "\n"
+               + "Cedula: " + str(self.getCedula())
 
 
     # GETTERS Y SETTERS ---------------------------------------------------------

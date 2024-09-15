@@ -39,9 +39,3 @@ class VentanaEntrada(tk.Frame):
         area_texto.configure(state='disabled')  # Hacer el texto no editable
         area_texto.pack(expand=True, fill='both')
 
-# Prueba de uso de la ventana en una aplicación
-if __name__ == "__main__":
-    root = tk.Tk()
-    ventana = VentanaEntrada(master=root)
-    ventana.pack(expand=True, fill='both')
-    root.mainloop()

@@ -29,14 +29,21 @@ ruta_carrito = directorio_script / "imagenes" / "carrito.png"
 ruta_precio = directorio_script / "imagenes" / "precio.png"
 ruta_cajera = directorio_script / "imagenes" / "cajera.png"
 ruta_productos = directorio_script / "imagenes" / "productos.png"
+
 ruta_sebastian1 = directorio_script / "imagenes" / "sebastian1.png"
 ruta_sebastian2 = directorio_script / "imagenes" / "sebastian2.png"
 ruta_sebastian3 = directorio_script / "imagenes" / "sebastian3.png"
 ruta_sebastian4 = directorio_script / "imagenes" / "sebastian4.png"
+
 ruta_valentina1 = directorio_script / "imagenes" / "valentina1.png"
 ruta_valentina2 = directorio_script / "imagenes" / "valentina2.png"
 ruta_valentina3 = directorio_script / "imagenes" / "valentina3.png"
 ruta_valentina4 = directorio_script / "imagenes" / "valentina4.png"
+
+ruta_santiago1 = directorio_script / "imagenes" / "santiago1.png"
+ruta_santiago2 = directorio_script / "imagenes" / "santiago2.png"
+ruta_santiago3 = directorio_script / "imagenes" / "santiago3.png"
+ruta_santiago4 = directorio_script / "imagenes" / "santiago4.png"
 
 
 #Creacion ventana
@@ -81,7 +88,23 @@ def mensaje(Evento):
 
     elif texto == "Sebastian Estrada Villa":
         hojaDeVida.config(text='Santiago Ochoa Quintero', anchor="center")
-        hojaDeVida2.config(text="Texto2 Texto2 Texto2 Texto2 Texto2 \n\nTexto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2", anchor="center")
+        hojaDeVida2.config(text="Estudio Ingeniería de Sistemas e Informática \n\nMe gusta la música y programar", anchor="center")
+
+        global imagen1sa
+        imagen1sa = redimensionar_imagen(ruta_santiago1, 200, 200)
+        labelImagen1.config(image=imagen1sa)
+
+        global imagen2sa
+        imagen2sa = redimensionar_imagen(ruta_santiago2, 200, 200)
+        labelImagen2.config(image=imagen2sa)
+
+        global imagen3sa
+        imagen3sa = redimensionar_imagen(ruta_santiago3, 200, 200)
+        labelImagen3.config(image=imagen3sa)
+
+        global imagen4sa
+        imagen4sa = redimensionar_imagen(ruta_santiago4, 200, 200)
+        labelImagen4.config(image=imagen4sa)
 
     elif texto == "Santiago Ochoa Quintero":
         hojaDeVida.config(text='Valentina Luján Robledo', anchor="center")
@@ -171,7 +194,7 @@ labelImagenSistema.bind("<Leave>", cambiarImagen)
 
 
 # Botón para avanzar a la siguiente ventana
-siguienteVentana = tk.Button(subFrame1_2, text="Nueva ventana", command=nueva_ventana, bg="#ff8fc5", font=("Georgia", 14, "bold"), fg="#ffffff", border=3, relief="raised")
+siguienteVentana = tk.Button(subFrame1_2, text="Ir a la ventana principal", command=nueva_ventana, bg="#ff8fc5", font=("Georgia", 14, "bold"), fg="#ffffff", border=3, relief="raised")
 siguienteVentana.place(relx=0.05, rely=0.7, relheight=0.15, relwidth=0.9)
 
 

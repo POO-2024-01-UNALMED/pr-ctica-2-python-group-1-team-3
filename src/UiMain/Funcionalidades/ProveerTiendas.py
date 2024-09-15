@@ -23,8 +23,9 @@ class ProveerTiendas(Frame):
     cantidadProducto = None
     tipoTransporte = None
     listaFiltradaTransportes = None
-    def _init_(self, window): 
-        super()._init_(window)
+    
+    def __init__(self, window): 
+        super().__init__(window)
         self.config(bg="#f8d5e1") # Configuración del color de fondo del marco principal
 
 
@@ -63,7 +64,7 @@ class ProveerTiendas(Frame):
             ProveerTiendas.producto = encontrarObjeto(desplegableProductos, fabrica.getListaFabricas()[0].getListaProductos())[0]
             
             # Inserta la información del producto en el cuadro de texto
-            cadenaDeTexto = ProveerTiendas.producto._str_()
+            cadenaDeTexto = ProveerTiendas.producto.__str__()
             texto_widgetProductos.insert(tk.END, cadenaDeTexto)
             texto_widgetProductos.config(state=DISABLED)  # Deshabilita el cuadro de texto nuevamente
 
@@ -112,7 +113,7 @@ class ProveerTiendas(Frame):
             texto_widgetTransporte.config(state=tk.NORMAL)
             texto_widgetTransporte.delete("1.0", tk.END)  # Limpia el cuadro de texto
             ProveerTiendas.tipoTransporte = list(filter(lambda x: x.value[0] == desplegableTransporte.get(), TipoTransporte))[0]
-            cadenaDeTexto = ProveerTiendas.tipoTransporte._str_()  # Inserta la información del transporte
+            cadenaDeTexto = ProveerTiendas.tipoTransporte.__str__()  # Inserta la información del transporte
             texto_widgetTransporte.insert(tk.END, cadenaDeTexto)
             botonEnviar.config(state="normal")  # Habilita el botón de envío
             texto_widgetTransporte.config(state=DISABLED)  # Deshabilita el cuadro de texto nuevamente
@@ -142,8 +143,38 @@ class ProveerTiendas(Frame):
                     transporte = Transporte(ProveerTiendas.tipoTransporte.value[0],ProveerTiendas.tipoTransporte.value[1],ProveerTiendas.tipoTransporte.value[2],Transportador.getListaTransportadores()[0])
                     transporte.suministrarProducto(ProveerTiendas.tienda,listaProductos)
                     ProveerTiendas.tienda.descargarProducto(transporte)
-                    messagebox.showinfo("Abasteciemintos",f"La tienda {ProveerTiendas.tienda.getNombre()} ha sido abastecida exitosamente con {ProveerTiendas.cantidadProducto} unidades de {ProveerTiendas.producto.getNombre()}")
+                    messagebox.showinfo("Abasteciemintos",f"La tienda {ProveerTiendas.tienda.getNombre()} ha sido surtida con {ProveerTiendas.cantidadProducto} unidades de {ProveerTiendas.producto.getNombre()}")
                     entradaProductosQa.delete(0, tk.END)
+
+                    # Limpieza de campos
+                    ProveerTiendas.tienda = None
+                    ProveerTiendas.producto = None
+                    ProveerTiendas.cantidadProducto = None
+                    ProveerTiendas.tipoTransporte = None
+                    ProveerTiendas.listaFiltradaTransportes = None
+                    
+                    # Resetear los widgets
+                    desplegableTiendas.set('Seleccionar tienda')
+                    desplegableProductos.set('Seleccionar producto')
+                    entradaProductosQa.delete(0, tk.END)
+                    desplegableTransporte.set('Seleccionar transporte')
+                    texto_widget.config(state=tk.NORMAL)
+                    texto_widget.delete('1.0', tk.END)
+                    texto_widget.config(state=DISABLED)
+                    texto_widgetProductos.config(state=tk.NORMAL)
+                    texto_widgetProductos.delete('1.0', tk.END)
+                    texto_widgetProductos.config(state=DISABLED)
+                    texto_widgetTransporte.config(state=tk.NORMAL)
+                    texto_widgetTransporte.delete('1.0', tk.END)
+                    texto_widgetTransporte.config(state=DISABLED)
+                    
+                    # Deshabilitar botones y entradas según sea necesario
+                    desplegableTiendas.config(state=tk.NORMAL)
+                    desplegableProductos.config(state=DISABLED)
+                    entradaProductosQa.config(state=DISABLED)
+                    desplegableTransporte.config(state=DISABLED)
+                    botonEnviar.config(state=DISABLED)
+
             except FaltaUno:
                 messagebox.showerror("Error", FaltaUno())
             except Proveer0Productos:
@@ -159,12 +190,11 @@ class ProveerTiendas(Frame):
 
         # Distribución uniforme de columnas
         self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=3)
-        self.columnconfigure(2, weight=1)
+        self.columnconfigure(1, weight=1)
 
         # Marco para la cabecera con título y descripción
         frameCabecera = tk.Frame(self, bg="#f8d5e1")
-        frameCabecera.grid(row=0, column=0, columnspan=8, padx=5, pady=5)
+        frameCabecera.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
 
         # Configurar el peso de la fila y columna para centrar el marco
         self.rowconfigure(0, weight=1)
@@ -180,19 +210,20 @@ class ProveerTiendas(Frame):
         descripcion.pack(pady=3)
 
 
-        # Stack para la parte de lista de tiendas
+        #TIENDAS
         predeterminadoTiendas = tk.StringVar(value='Seleccionar tienda')
         casillaTiendas = tk.Frame(self, width=100, height=200 ,bg="#ff8fc5",relief="raised",  border=2)
-        casillaTiendas.grid(row=1, column=0, sticky="ew")
+        casillaTiendas.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
 
         stack = tk.Frame(casillaTiendas) 
         stack.pack(pady=3)
 
+        #Etiqueta de tiendas
         textoTiedas = tk.Label(stack, text='Lista de tiendas',font=("Georgia", 12, "bold"),border=1,relief="sunken")
         textoTiedas.pack(side='top', anchor='center')
         desplegableTiendas = ttk.Combobox(stack, values=[x.getNombre() for x in fabrica.getListaFabricas()[0].getListaTiendas()], 
                                           textvariable=predeterminadoTiendas,state=tk.NORMAL)
-        desplegableTiendas.pack(side='top', anchor='center')
+        desplegableTiendas.pack(pady=5)
 
         # Crear una casilla para contener el cuadro de texto
         casillaTextoTiendas = tk.Frame(self, width=113, height=200)
@@ -201,7 +232,7 @@ class ProveerTiendas(Frame):
         # Crear un cuadro de texto para mostrar información
         informacion = "Aquí se mostrará la información de la tienda seleccionada."
         texto_widget = scrolledtext.ScrolledText(casillaTextoTiendas, width=32, height=8, bg="#f5a6db")
-        texto_widget.pack()
+        texto_widget.pack(pady=5)
         
         # Agregar contenido al widget de texto
         texto_widget.insert(tk.END, informacion)
@@ -211,20 +242,20 @@ class ProveerTiendas(Frame):
         desplegableTiendas.bind("<Button-1>",deshabilitarTienda)
 
 
-        # Stack para la parte de productos
+        # PRODUCTOS
         predeterminadoProductos = tk.StringVar(value='Seleccionar producto')
-        casillaProductos = tk.Frame(self, width=113, height=200, bg="#ff8fc5",relief="raised",  border=2)
-        casillaProductos.grid(row=2, column=0, sticky="ew")
+        casillaProductos = tk.Frame(self, width=100, height=200, bg="#ff8fc5",relief="raised",  border=2)
+        casillaProductos.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
         stack = tk.Frame(casillaProductos)
         stack.pack()
 
         textoProductos = tk.Label(stack, text='Lista de Productos', font=("Georgia", 12, "bold"),border=1,relief="sunken")
-        textoProductos.pack(side='top', anchor='center')
+        textoProductos.pack(pady=5)
 
         desplegableProductos = ttk.Combobox(stack, values=[x.getNombre() for x in fabrica.getListaFabricas()[0].getListaProductos()], textvariable=predeterminadoProductos,
                                             state=DISABLED,width=20)
-        desplegableProductos.pack(side='top', anchor='center')
+        desplegableProductos.pack(pady=5)
 
         # Crear una casilla para contener el cuadro de texto
         casillaTextoProductos = tk.Frame(self, width=113, height=200)
@@ -232,8 +263,8 @@ class ProveerTiendas(Frame):
         
         # Crear un cuadro de texto para mostrar información
         informacion = "Aquí se mostrará la información del producto seleccionado."
-        texto_widgetProductos = tk.Text(casillaTextoProductos, width=32,height=8,bg="#f5a6db")
-        texto_widgetProductos.pack()
+        texto_widgetProductos = tk.Text(casillaTextoProductos, width=30,height=5,bg="#f5a6db")
+        texto_widgetProductos.pack(pady=5)
         
         # Agregar contenido al widget de texto
         texto_widgetProductos.insert(tk.END, informacion)
@@ -243,7 +274,7 @@ class ProveerTiendas(Frame):
         desplegableProductos.bind("<Button-1>",deshabilitarProductos)
 
         
-        # Stack para la parte de productos
+        # Cantidad de productos
         casillaQaProductos = tk.Frame(self, width=113, height=200, bg="#ff8fc5",relief="raised",  border=2)
         casillaQaProductos.grid(row=2, column=2, sticky="ew")
 
@@ -259,19 +290,19 @@ class ProveerTiendas(Frame):
         entradaProductosQa.bind("<KeyRelease>", eventoEntry)
 
         
-        # Stack para la parte de productos
+        # TRANSPORTE
         predeterminadoTransporte = tk.StringVar(value='Seleccionar transporte')
-        casillaTransporte = tk.Frame(self, width=113, height=200,bg="#ff8fc5",relief="raised",  border=2)
-        casillaTransporte.grid(row=3, column=0, sticky="ew")
+        casillaTransporte = tk.Frame(self, width=100, height=200,bg="#ff8fc5",relief="raised",  border=2)
+        casillaTransporte.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
         stack = tk.Frame(casillaTransporte)
         stack.pack()
 
         textoTransporte = tk.Label(stack, text='Lista de Transporte', font=("Georgia", 12, "bold"),border=1,relief="sunken")
-        textoTransporte.pack(side='top', anchor='center')
+        textoTransporte.pack(pady=5)
         desplegableTransporte = ttk.Combobox(stack, values=["a"], textvariable=predeterminadoTransporte,
                                              state='readonly')
-        desplegableTransporte.pack(side='top', anchor='center')
+        desplegableTransporte.pack(pady=5)
         desplegableTransporte.configure(state=DISABLED)
 
         # Crear una casilla para contener el cuadro de texto
@@ -281,7 +312,7 @@ class ProveerTiendas(Frame):
         # Crear un cuadro de texto para mostrar información
         informacion = "Aquí se mostrará la información del transporte seleccionado."
         texto_widgetTransporte = tk.Text(casillaTextoTransporte, width=32, height=8, bg="#f5a6db")
-        texto_widgetTransporte.pack()
+        texto_widgetTransporte.pack(pady=5)
         
         # Agregar contenido al widget de texto
         texto_widgetTransporte.insert(tk.END, informacion)

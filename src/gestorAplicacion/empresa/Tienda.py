@@ -223,6 +223,10 @@ class Tienda(Moda):
         transporte.getTransportador().setTrabajo(transporte.getTransportador().getTrabajo() + 1)
 
 
+    def __str__(self):
+        return f"{self._nombre}"
+
+
     # GETTERS Y SETTERS----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     def getNombre(self):

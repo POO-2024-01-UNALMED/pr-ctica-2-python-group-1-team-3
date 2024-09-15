@@ -46,7 +46,7 @@ class Devoluciones(Frame):
 
         # Descripción
         variableD = """En esta sección podrá realizar devoluciones de productos.\nPara esto, seleccione el cliente y el producto a devolver."""
-        descripcionCabecera = tk.Label(Cabecera, text=variableD, font=("Georgia", 12), bg="#fbcfe0", border=2, relief="sunken")
+        descripcionCabecera = tk.Label(Cabecera, text=variableD, font=("Georgia", 12), bg="#f6b6c3", border=2, relief="sunken")
         descripcionCabecera.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
         # Contenedor de Facturas
@@ -62,7 +62,7 @@ class Devoluciones(Frame):
 
         # Texto descriptivo de las facturas
         textoFactura = "Seleccione el cliente al que corresponde a la factura de la que desea hacer la devolución"
-        descripcionFactura = tk.Label(Facturas, text=textoFactura, font=("Georgia", 12, "bold"), border=1, relief="sunken")
+        descripcionFactura = tk.Label(Facturas, text=textoFactura, font=("Georgia", 12, "bold"), border=1, relief="sunken", bg="#f6b6c3")
         descripcionFactura.grid(row=0, padx=10, pady=10, sticky="nsew")
 
         # Desplegable para seleccionar factura
@@ -76,17 +76,17 @@ class Devoluciones(Frame):
         self.desplegableFactura.grid(row=1, padx=10, pady=10, sticky="nsew")
         self.desplegableFactura.bind("<<ComboboxSelected>>", self.opcionFactura)  # Llama a la función opcionFactura cuando se selecciona una opción
 
-        # --- Texto descriptivo de los productos
-        descripcionProducto = tk.Label(self.Productos, text="Seleccione el producto que desea devolver", font=("Georgia", 12, "bold"), border=1, relief="sunken")
+        # Texto descriptivo de los productos
+        descripcionProducto = tk.Label(self.Productos, text="Seleccione el producto que desea devolver", font=("Georgia", 12, "bold"), border=1, relief="sunken", bg="#f6b6c3")
         descripcionProducto.grid(row=0, padx=10, pady=10, sticky="nsew")
 
-        # --- Desplegable para seleccionar producto
+        # Desplegable para seleccionar producto
         seleccionarProducto = tk.StringVar(value="Seleccionar producto")
         self.desplegableProducto = ttk.Combobox(self.Productos, values=Devoluciones.listaProductos, textvariable=seleccionarProducto, state='readonly', width=30)
         self.desplegableProducto.grid(row=1, padx=10, pady=10, sticky="nsew")
         self.desplegableProducto.bind("<<ComboboxSelected>>", self.opcionProducto)  # Llama a la función opcionProducto cuando se selecciona una opción
 
-        # ---- Botón para devolver producto ----
+        # Botón para devolver producto 
         self.boton = tk.Button(self, text="Realizar devolución", width=20, height=4, bg="#e895b0", font=("Georgia", 14, "bold"), fg="#ffffff", border=3, relief="raised", command=self.devolverProducto)
         self.boton.grid(row=3, column=1)
         self.boton.grid_remove()  # Oculta el botón hasta que se seleccione un producto
@@ -141,7 +141,7 @@ class Devoluciones(Frame):
         Devoluciones.clienteElegido.getProductos().remove(Devoluciones.productoElegido)
 
         # Muestra un mensaje de éxito
-        messagebox.showinfo("¡Devolución Exitosa!", f"El producto devuelto fue:\n{Devoluciones.productoElegido.getNombre()}")
+        messagebox.showinfo("Devolución realizada", f"El producto devuelto fue:\n{Devoluciones.productoElegido.getNombre()}")
 
         # Reinicia los valores de los desplegables y oculta los contenedores
         self.desplegableFactura.set('')
