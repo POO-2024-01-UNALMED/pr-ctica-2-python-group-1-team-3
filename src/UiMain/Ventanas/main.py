@@ -121,11 +121,11 @@ supermercado.""", anchor="center")
 
 
 rutasImagenesSistema = [
-    ruta_tienda,
     ruta_carrito,
     ruta_productos,
     ruta_cajera,
     ruta_precio,
+    ruta_tienda
 ]
 
 image_index = 0
