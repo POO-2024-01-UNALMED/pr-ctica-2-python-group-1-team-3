@@ -17,10 +17,6 @@ from tkinter import messagebox
 from PIL import Image, ImageTk  # Para redimensionar imágenes
 from pathlib import Path
 
-#Importacion de clases
-from UiMain.Ventanas.VentanaPrincipal import VentanaPrincipal
-from baseDatos.Serializador import Serializador
-
 #Rutas de las imagenes
 directorio_script = Path(__file__).parent
 
@@ -130,7 +126,8 @@ def mensaje(Evento):
 #Funcion para crear una nueva ventana y cerra la anterior
 def nueva_ventana():
     ventanaMain.withdraw()
-    #Deserializador.deserializar() # Para cargar los objetos serializados
+    
+    from UiMain.Ventanas.VentanaPrincipal import VentanaPrincipal
     ventana2 = VentanaPrincipal()  # Crea una instancia de la ventana principal
     ventana2.deiconify()
 
@@ -162,8 +159,7 @@ def cambiarImagen(Event):
 
 
 def salir_y_guardar():
-        """Guarda los datos y sale de la aplicación."""
-        Serializador.serializar()
+        """Sale de la aplicación."""
         ventanaMain.destroy()
         
 
@@ -264,5 +260,3 @@ menubar.add_cascade(
 ventanaMain.grid_columnconfigure(0, weight=1)
 ventanaMain.grid_columnconfigure(1, weight=1)
 ventanaMain.grid_rowconfigure(0, weight=1)
-
-ventanaMain.mainloop()  # Inicia el bucle de eventos

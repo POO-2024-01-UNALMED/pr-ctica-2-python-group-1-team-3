@@ -15,6 +15,8 @@ from UiMain.Funcionalidades.Devoluciones import Devoluciones
 from UiMain.Ventanas.VentanaEntrada import VentanaEntrada
 from baseDatos.Serializador import Serializador
 
+#from UiMain.Ventanas.main import ventanaMain
+
 import sys
 
 from baseDatos.Deserializador import Deserializador
@@ -118,9 +120,14 @@ class VentanaPrincipal(tk.Tk):
         messagebox.showinfo("Aplicación", info)
 
     def salir_y_guardar(self):
-        """Guarda los datos y sale de la aplicación."""
-        self.destroy()
-        Serializador.serializar()
+        """Guarda los datos, cierra la ventana actual y regresa a la ventana de entrada."""
+        Serializador.serializar()  # Guarda los datos
+        self.withdraw()  # Oculta la ventana principal
+
+        # Importar ventanaMain de forma diferida
+        from UiMain.Ventanas.main import ventanaMain
+        ventanaMain.deiconify()  # Muestra la segunda ventana
+
 
     def acerca_de(self):
         """Muestra la información de los desarrolladores."""
