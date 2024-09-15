@@ -38,11 +38,11 @@ class EnviarPedido(Frame):
     Dia=int
     
     
-    def _init_(self, window):
+    def __init__(self, window):
         """
         Inicializa la interfaz gráfica del envío de pedidos.
         """
-        super()._init_(window)
+        super().__init__(window)
         self.config(bg="#f8d5e1")
 
         # Configuración de la disposición en filas y columnas
