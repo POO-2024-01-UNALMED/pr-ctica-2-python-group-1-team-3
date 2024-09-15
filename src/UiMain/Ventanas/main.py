@@ -15,6 +15,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import messagebox
 
+from VentanaPrincipal import VentanaPrincipal
 #
 # import VentanaPrincipal
 
@@ -132,52 +133,52 @@ def cambiarImagen(Event):
 
 
 #Frame 1 - Parte izquierda de la pantalla
-frame1 = tk.Frame(ventanaMain, bg="white", borderwidth=2, relief="sunken")
+frame1 = tk.Frame(ventanaMain, bg="pink", borderwidth=2, relief="sunken")
 frame1.place(relx=0, rely=0, relwidth=0.5, relheight=1)
 
-subFrame1_1 = tk.Frame(frame1, bg="white", borderwidth=2, relief="sunken")
+subFrame1_1 = tk.Frame(frame1, bg="pink", borderwidth=2, relief="sunken")
 subFrame1_1.place(relx=0.05, rely=0.05, relheight=0.20, relwidth=0.9)
 
-saludoBienvenida = tk.Label(subFrame1_1, font=("Helvetica", 15), text="Bienvenido a Delicia Fresca", bg="white", borderwidth=2, relief="sunken")
+saludoBienvenida = tk.Label(subFrame1_1, font=("Helvetica", 15), text="Bienvenido a Delicia Fresca", bg="pink", borderwidth=2, relief="sunken")
 saludoBienvenida.place(relx=0.15, rely=0.4)
 
 #Subframe 1 Frame parte derecha Boton para avanzar a la siguiente ventana
 
-subFrame1_2 = tk.Frame(frame1, bg="white", borderwidth=2, relief="sunken")
+subFrame1_2 = tk.Frame(frame1, bg="pink", borderwidth=2, relief="sunken")
 subFrame1_2.place(relx=0.05, rely=0.35, relheight=0.60, relwidth=0.9)
 
 siguienteVentana = tk.Button(subFrame1_2, text="Nueva ventana", command=nueva_ventana)
 siguienteVentana.place(relx=0.05, rely=0.7, relheight=0.15, relwidth=0.9)
 
 imagenSis = tk.PhotoImage(file=ruta_carrito)
-labelImagenSistema = tk.Label(subFrame1_2, image=imagenSis, bg="white", borderwidth=2, relief="sunken")
+labelImagenSistema = tk.Label(subFrame1_2, image=imagenSis, bg="pink", borderwidth=2, relief="sunken")
 labelImagenSistema.place(relx=0.1, rely=0.05, relheight=0.6, relwidth=0.8)
 labelImagenSistema.bind("<Leave>", cambiarImagen)
 
 
 
 #Frame 2 - Parte derecha de la ventana
-frame2 = tk.Frame(ventanaMain, bg="white", borderwidth=2, relief="sunken")
+frame2 = tk.Frame(ventanaMain, bg="pink", borderwidth=2, relief="sunken")
 frame2.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
 
-subFrame2_1 = tk.Frame(frame2, bg="white", borderwidth=2, relief="sunken")
+subFrame2_1 = tk.Frame(frame2, bg="pink", borderwidth=2, relief="sunken")
 subFrame2_1.place(relx=0.05, rely=0.05, relheight=0.25, relwidth=0.9)
 
 
-hojaDeVida = tk.Label(subFrame2_1, bg="white",text="Valentina Luján Robledo", font=("Helvetica", 16))
+hojaDeVida = tk.Label(subFrame2_1, bg="pink",text="Valentina Luján Robledo", font=("Helvetica", 16))
 hojaDeVida.place(relx=0.20, rely=0.20)
 
 hojaDeVida.bind("<Button-1>", mensaje)
 
-hojaDeVida2 = tk.Label(subFrame2_1, bg="white", text="Estudio Ingeniería de Sistemas e Informática \n\nMe gusta la música, bailar y aprender \ncosas nuevas ", font=("Georgia", 12), justify="left")
+hojaDeVida2 = tk.Label(subFrame2_1, bg="pink", text="Estudio Ingeniería de Sistemas e Informática \n\nMe gusta la música, bailar y aprender \ncosas nuevas ", font=("Georgia", 12), justify="left")
 hojaDeVida2.place(relx=0.10, rely=0.40)
-hojaDeVida.bind("<Button-1>", mensaje)
+hojaDeVida2.bind("<Button-1>", mensaje)
 
 
 
 
 
-subFrame2_2 = tk.Frame(frame2, bg="white", borderwidth=2, relief="sunken")
+subFrame2_2 = tk.Frame(frame2, bg="pink", borderwidth=2, relief="sunken")
 subFrame2_2.place(relx=0.125, rely=0.35, relheight=0.40, relwidth=0.8)
 
 imagen1 = tk.PhotoImage(file=ruta_valentina1)
@@ -210,12 +211,12 @@ menubar.add_cascade(
 
 
 
-ventana2 = tk.Tk()
-ventana2.geometry('1000x1000')
-ventana2.title('Delicia Fresca')
+# ventana2 = tk.Tk()
+# ventana2.geometry('1000x1000')
+# ventana2.title('Delicia Fresca')
 
-def ventana2Info():
-    messagebox.showinfo("Delicia Fresca", "¡Hola, esta es una ventana emergente!")
+# def ventana2Info():
+#     messagebox.showinfo("Delicia Fresca", "¡Hola, esta es una ventana emergente!")
 
 # def ventanaPrincipal():
 #     # ventana2.withdraw(
@@ -229,7 +230,7 @@ def ventana2Info():
 
 #Lista de clientes - Tienda - Productso con una cantidad menor que 5 - Transporte - Envio gratis
 
-# ventana2funcionalidad = tk.Frame(ventana2, bg="white")
+# ventana2funcionalidad = tk.Frame(ventana2, bg="pink")
 # ventana2funcionalidad.place(x=100, y=250, relwidth=0.8, relheight=0.5)
 #
 # ventana2FuncionalidadFrame1 = tk.Frame(ventana2funcionalidad, bg="red")
@@ -327,6 +328,8 @@ def ventana2Info():
 # combo5.place(relx=0.05, rely=0.3, relheight=0.2, relwidth=0.2)
 
 
+ventana2 = VentanaPrincipal()  # Crea una instancia de la ventana principal
+ventana2.mainloop()
 
 
 ventana2.withdraw()
