@@ -42,7 +42,10 @@ ruta_valentina1 = directorio_script / "imagenes" / "valentina1.png"
 ruta_valentina2 = directorio_script / "imagenes" / "valentina2.png"
 ruta_valentina3 = directorio_script / "imagenes" / "valentina3.png"
 ruta_valentina4 = directorio_script / "imagenes" / "valentina4.png"
-
+ruta_santiago1 = directorio_script / "imagenes" / "santiago1.png"
+ruta_santiago2 = directorio_script / "imagenes" / "santiago2.png"
+ruta_santiago3 = directorio_script / "imagenes" / "santiago3.png"
+ruta_santiago4 = directorio_script / "imagenes" / "santiago4.png"
 
 #Creacion ventana
 ventanaMain = tk.Tk()
@@ -78,7 +81,22 @@ def mensaje(Evento):
 
     if (texto == "Sebastian Estrada Villa"):
         hojaDeVida.config(text='Santiago Ochoa Quintero')
-        hojaDeVida2.config(text="Texto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2 Texto2 Texto2 \nTexto2 Texto2 Texto2")
+        hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta la música, programar y \njugar videojuegos ")
+        global imagen1sa
+        imagen1sa = tk.PhotoImage(file=ruta_santiago1)
+        labelImagen1.config(image=imagen1sa)
+
+        global imagen2sa
+        imagen2sa = tk.PhotoImage(file=ruta_santiago4)
+        labelImagen2.config(image=imagen2sa)
+
+        global imagen3sa
+        imagen3sa = tk.PhotoImage(file=ruta_santiago3)
+        labelImagen3.config(image=imagen3sa)
+
+        global imagen4sa
+        imagen4sa = tk.PhotoImage(file=ruta_santiago2)
+        labelImagen4.config(image=imagen4sa)
     if (texto == "Santiago Ochoa Quintero"):
         hojaDeVida.config(text='Valentina Luján Robledo')
         hojaDeVida2.config(text="Estudio Ingeniería de Sistemas \ne Informática \nMe gusta la música, bailar y \naprender cosas nuevas ")
