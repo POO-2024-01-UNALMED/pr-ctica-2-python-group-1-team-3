@@ -23,8 +23,8 @@ class ProveerTiendas(Frame):
     cantidadProducto = None
     tipoTransporte = None
     listaFiltradaTransportes = None
-    def _init_(self, window): 
-        super()._init_(window)
+    def __init__(self, window): 
+        super().__init__(window)
         self.config(bg="#f8d5e1") # Configuración del color de fondo del marco principal
 
 
@@ -63,7 +63,7 @@ class ProveerTiendas(Frame):
             ProveerTiendas.producto = encontrarObjeto(desplegableProductos, fabrica.getListaFabricas()[0].getListaProductos())[0]
             
             # Inserta la información del producto en el cuadro de texto
-            cadenaDeTexto = ProveerTiendas.producto._str_()
+            cadenaDeTexto = ProveerTiendas.producto.__str__()
             texto_widgetProductos.insert(tk.END, cadenaDeTexto)
             texto_widgetProductos.config(state=DISABLED)  # Deshabilita el cuadro de texto nuevamente
 
@@ -112,7 +112,7 @@ class ProveerTiendas(Frame):
             texto_widgetTransporte.config(state=tk.NORMAL)
             texto_widgetTransporte.delete("1.0", tk.END)  # Limpia el cuadro de texto
             ProveerTiendas.tipoTransporte = list(filter(lambda x: x.value[0] == desplegableTransporte.get(), TipoTransporte))[0]
-            cadenaDeTexto = ProveerTiendas.tipoTransporte._str_()  # Inserta la información del transporte
+            cadenaDeTexto = ProveerTiendas.tipoTransporte.__str__()  # Inserta la información del transporte
             texto_widgetTransporte.insert(tk.END, cadenaDeTexto)
             botonEnviar.config(state="normal")  # Habilita el botón de envío
             texto_widgetTransporte.config(state=DISABLED)  # Deshabilita el cuadro de texto nuevamente
