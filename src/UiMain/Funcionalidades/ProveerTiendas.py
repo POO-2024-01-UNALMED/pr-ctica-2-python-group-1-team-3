@@ -23,6 +23,7 @@ class ProveerTiendas(Frame):
     cantidadProducto = None
     tipoTransporte = None
     listaFiltradaTransportes = None
+    
     def __init__(self, window): 
         super().__init__(window)
         self.config(bg="#f8d5e1") # Configuración del color de fondo del marco principal
