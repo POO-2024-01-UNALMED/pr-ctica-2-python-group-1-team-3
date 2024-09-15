@@ -143,7 +143,7 @@ class ProveerTiendas(Frame):
                     transporte = Transporte(ProveerTiendas.tipoTransporte.value[0],ProveerTiendas.tipoTransporte.value[1],ProveerTiendas.tipoTransporte.value[2],Transportador.getListaTransportadores()[0])
                     transporte.suministrarProducto(ProveerTiendas.tienda,listaProductos)
                     ProveerTiendas.tienda.descargarProducto(transporte)
-                    messagebox.showinfo("Abasteciemintos",f"La tienda {ProveerTiendas.tienda.getNombre()} ha exitosamente surtida con {ProveerTiendas.cantidadProducto} unidades de {ProveerTiendas.producto.getNombre()}")
+                    messagebox.showinfo("Abasteciemintos",f"La tienda {ProveerTiendas.tienda.getNombre()} ha sido surtida con {ProveerTiendas.cantidadProducto} unidades de {ProveerTiendas.producto.getNombre()}")
                     entradaProductosQa.delete(0, tk.END)
 
                     # Limpieza de campos
