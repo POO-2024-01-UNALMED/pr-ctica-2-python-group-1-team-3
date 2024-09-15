@@ -6,5 +6,5 @@ sys.path.append(os.path.dirname(__file__))
 
 from UiMain.Ventanas import main
 
-if __name__ == "__main__":
-    main.ventanaMain.mainloop()  # Inicia el bucle de eventos
+
+main.ventanaMain.mainloop()  # Inicia el bucle de eventos
