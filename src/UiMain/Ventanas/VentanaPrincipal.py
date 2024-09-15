@@ -126,9 +126,3 @@ class VentanaPrincipal(tk.Tk):
         """Muestra la información de los desarrolladores."""
         messagebox.showinfo("Desarrolladores", 
                             "Valentina Luján Robledo\nSebastian Estrada Villa\nSantiago Ochoa Quintero\n")
-
-
-# Uso de la ventana principal
-if __name__ == "__main__":
-    app = VentanaPrincipal()
-    app.mainloop()
