@@ -53,7 +53,7 @@ class Transporte:
         return textoTipoTransporte
 
     def __str__(self):
-        return f"Transporte: {self.tipo}"
+        return f"{self.tipo.name}"
 
 
     @classmethod
