@@ -13,8 +13,8 @@ from gestorAplicacion.empleados.Vendedor import Vendedor
 from gestorAplicacion.empleados.Transportador import Transportador
 
 class PagoDeNomina(Frame):
-    def _init_(self, window):
-        super()._init_(window)
+    def __init__(self, window):
+        super().__init__(window)
 
         # Configuración de la ventana
         self.config(bg="#f8d5e1")
