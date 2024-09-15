@@ -171,7 +171,7 @@ labelImagenSistema.bind("<Leave>", cambiarImagen)
 
 
 # Botón para avanzar a la siguiente ventana
-siguienteVentana = tk.Button(subFrame1_2, text="Nueva ventana", command=nueva_ventana, bg="#ff8fc5", font=("Georgia", 14, "bold"), fg="#ffffff", border=3, relief="raised")
+siguienteVentana = tk.Button(subFrame1_2, text="Ir a la ventana principal", command=nueva_ventana, bg="#ff8fc5", font=("Georgia", 14, "bold"), fg="#ffffff", border=3, relief="raised")
 siguienteVentana.place(relx=0.05, rely=0.7, relheight=0.15, relwidth=0.9)
 
 

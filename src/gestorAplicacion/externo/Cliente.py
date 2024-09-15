@@ -87,7 +87,8 @@ class Cliente(Moda):
 
         :return: Una cadena de texto con la información del cliente, incluyendo nombre y dirección.
         """
-        return f"{self.getNombre()} Dirección: {self.getDireccion()}"
+        return f" Nombre: {self.getNombre()} - Dirección: {self.getDireccion()}"
+
 
     # GETTERS Y SETTERS --------------------------------------------------------------------------------------------------------------------------------------------
     

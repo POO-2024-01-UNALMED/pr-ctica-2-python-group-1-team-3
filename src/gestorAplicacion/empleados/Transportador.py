@@ -67,10 +67,9 @@ class Transportador(Persona):
     #         identificación y el tipo de transporte asignado.
     
     def __str__(self):
-        return "\nNombre: " + self.getNombre() + "\n" \
+        return "Nombre: " + self.getNombre() + "\n" \
             + "Edad: " + str(self.getEdad()) + "\n" \
-            + "Cedula: " + str(self.getCedula()) + "\n" \
-            + "Transporte: " + str(self.getTransporte().getTipo()) + "\n"  # Convierte a str()
+            + "Cedula: " + str(self.getCedula())
 
 
     
