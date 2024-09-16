@@ -75,7 +75,7 @@ class PagoDeNomina(Frame):
                     trabajadorEscogido = trabajador
             
             # Mostrar información del trabajador
-            datosTrabajador.config(text=trabajadorEscogido._str_())
+            datosTrabajador.config(text=trabajadorEscogido.__str__())
 
             # Calcular el pago por trabajo y mostrarlo
             pagoTrabajo = CuentaBancaria.calcularPago(trabajadorEscogido)
@@ -105,7 +105,7 @@ class PagoDeNomina(Frame):
             textoMetasTrabajador = textoIndice
             for i in range(len(listaMetas)):
                 textoMetasTrabajador += f"Meta {i+1}"
-                textoMetasTrabajador += listaMetas[i]._str_() + "\n"
+                textoMetasTrabajador += listaMetas[i].__str__() + "\n"
 
             textoMetas.config(text=textoMetasTrabajador)
             frameMetas.grid()

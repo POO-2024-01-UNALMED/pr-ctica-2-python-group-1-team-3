@@ -173,7 +173,7 @@ class Fabrica:
         mensaje = ""
         numero = 1
         for trabajador in trabajadores:
-            mensaje += f"\nTrabajador {numero} {trabajador._str_()}"
+            mensaje += f"\nTrabajador {numero} {trabajador.__str__()}"
             numero += 1
         return mensaje
 
@@ -181,7 +181,7 @@ class Fabrica:
     # toString para saber qué imprimir cuando se llame al objeto Fabrica
     # @Override  
     
-    def _str_(self):
+    def __str__(self):
         return "Fábrica Delicia Fresca"
 
 

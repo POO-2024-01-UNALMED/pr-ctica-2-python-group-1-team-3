@@ -281,5 +281,5 @@ class Tienda(Moda):
     def getListaTiendas(cls):
         return cls._listaTiendas
 
-    def _str_(self) -> str:
+    def __str__(self) -> str:
         return self._nombre
