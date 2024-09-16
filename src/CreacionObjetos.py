@@ -1,4 +1,4 @@
-
+"""
 
 from gestorAplicacion.externo.CuentaBancaria import CuentaBancaria
 from gestorAplicacion.empleados.Operario import Operario
@@ -175,3 +175,4 @@ transportador1.setTransporte(transporte1)
 #Serializar 
 Serializador.serializar()
 
+"""
